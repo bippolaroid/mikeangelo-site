@@ -1,0 +1,106 @@
+{
+  "projects": [
+    {
+      "id": 0,
+      "client": "Benzel-Busch Mercedes-Benz",
+      "accentColor": "#07048b",
+      "title": "Reimagining Dealership Advertising",
+      "tags": [
+        "Co-Editor",
+        "Art Director",
+        "Social Media",
+        "Digital Marketing"
+      ],
+      "featured": "https://player.vimeo.com/7683baf1-43f4-4dbf-bb85-1be65639255e",
+      "summary": "Breaking away from traditional dealership advertising tropes, Benzel-Busch's series of commercials on Sling TV introduced humor and sophistication. Focusing on services like valet, modern sales approaches, and state-of-the-art parts departments, these ads redefined the dealership image, presenting it as customer-centric and forward-thinking.",
+      "keypoints": [
+        {
+          "id": 0,
+          "featured": "./public/video-1.mp4",
+          "title": "Service with a Smile",
+          "summary": "The commercials emphasized the dealership's commitment to exceptional service, portraying it as seamless and tailored to individual needs."
+        },
+        {
+          "id": 1,
+          "featured": "./public/video-1.mp4",
+          "title": "Service with a Smile",
+          "summary": "The commercials emphasized the dealership's commitment to exceptional service, portraying it as seamless and tailored to individual needs."
+        },
+        {
+          "id": 2,
+          "featured": "./public/video-1.mp4",
+          "title": "Service with a Smile",
+          "summary": "The commercials emphasized the dealership's commitment to exceptional service, portraying it as seamless and tailored to individual needs."
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "client": "Bahlsen North America",
+      "accentColor": "#1E90FF",
+      "title": "Sweet Strategies for a Classic Cookie",
+      "tags": [
+        "Social Media",
+        "Digital Marketing",
+        "Experiential Marketing",
+        "Content Creation"
+      ],
+      "featured": "./public/bahlsen-featured.mp4",
+      "summary": "Looney Advertising partnered with Bahlsen North America to rejuvenate the brand's presence in the U.S. market. Through innovative campaigns spanning TikTok launches, drone-powered sampling, and timely social media initiatives, Bahlsen connected with a new generation of cookie lovers while honoring its rich heritage.",
+      "keypoints": [
+        {
+          "id": 0,
+          "featured": "./public/bahlsen-tiktok.mp4",
+          "title": "TikTok Tastes Better",
+          "summary": "Launching Bahlsen on TikTok introduced the brand to younger audiences with creative content that garnered 300,000 views and 2.3 million impressions in just four weeks, all at an efficient cost of $0.05 per view."
+        },
+        {
+          "id": 1,
+          "featured": "./public/bahlsen-drone.mp4",
+          "title": "Drone Snack Attack",
+          "summary": "To celebrate new packaging, Bahlsen executed an industry-first by deploying drones to distribute free samples, creating a buzzworthy experiential marketing moment that delighted consumers."
+        },
+        {
+          "id": 2,
+          "featured": "./public/bahlsen-hide-them.mp4",
+          "title": "#HideThemAtHome",
+          "summary": "During quarantine, Bahlsen launched a playful campaign encouraging fans to share their creative cookie hiding spots, extending the concept across TV, social media, digital platforms, and PR."
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "client": "Chubb Insurance",
+      "accentColor": "#003366",
+      "title": "Engineering Trust: Chubb's Risk Education Center",
+      "tags": [
+        "Brand Strategy",
+        "Content Creation",
+        "Experiential Marketing",
+        "Video Production"
+      ],
+      "featured": "./public/chubb-featured.mp4",
+      "summary": "Looney Advertising partnered with Chubb to rebrand and reposition their state-of-the-art Risk Education Center. By uncovering compelling stories from Chubb's engineers, the campaign highlighted the company's commitment to protection and innovation, culminating in an action-packed film that showcases the center's capabilities.",
+      "keypoints": [
+        {
+          "id": 0,
+          "featured": "./public/chubb-engineers.mp4",
+          "title": "Stories That Shield",
+          "summary": "Through in-depth interviews, the campaign brought to light the personal narratives of Chubb's engineers, emphasizing their dedication to safeguarding clients and reinforcing the brand's human-centric approach."
+        },
+        {
+          "id": 1,
+          "featured": "./public/chubb-technology.mp4",
+          "title": "Tech-Driven Trust",
+          "summary": "By showcasing the advanced technology within the Risk Education Center, the campaign positioned Chubb as a forward-thinking leader in risk management, blending human expertise with cutting-edge solutions."
+        },
+        {
+          "id": 2,
+          "featured": "./public/chubb-experience.mp4",
+          "title": "Immersive Assurance",
+          "summary": "The creation of an engaging film provided audiences with an immersive experience of the Risk Education Center, effectively communicating Chubb's commitment to education and proactive risk prevention."
+        }
+      ]
+    }
+  ]
+}

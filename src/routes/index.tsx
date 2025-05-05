@@ -1,6 +1,7 @@
-import { A } from "@solidjs/router";
-import { createSignal, onMount, Show } from "solid-js";
+import { A, json } from "@solidjs/router";
+import { createSignal, For, onMount, Show } from "solid-js";
 import Project from "~/components/Project";
+import * as DB from "../db.json";
 
 export default function Home() {
   return (
@@ -22,8 +23,8 @@ export default function Home() {
               </strong>
             </h3>
             <p class="text-xl">
-              I specialize in ad campaigns, design, editing, and web & app
-              development.{" "}
+              I specialize in ad campaigns, editing, digital media, and web &
+              app development.{" "}
               <A
                 class="underline text-neutral-950 hover:text-neutral-300"
                 href=""
@@ -35,10 +36,11 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <Project />
-      <Project />
-      <Project />
-      <Project />
+      <For each={DB.projects}>
+        {(project) => {
+          return <Project data={project} />;
+        }}
+      </For>
     </main>
   );
 }
