@@ -44,12 +44,15 @@ export default function Nav() {
             </span>
           </div>
           <div class="w-full flex gap-3 justify-end items-center">
-            <div
+            {/*<div
               class="cursor-pointer ring hover:ring-neutral-500 ring-neutral-200
         text-neutral-500 rounded shadow-md hover:scale-[103%] shadow-transparent hover:shadow-neutral-300 px-3 py-1"
             >
               Portfolio
-            </div>
+            </div>*/}
+            <button class="bg-neutral-950 hover:bg-neutral-300 px-3 py-1 cursor-pointer rounded text-neutral-50">
+              Contact
+            </button>
             <div class="flex gap-3">
               <A
                 class="text-neutral-300 hover:text-neutral-500 hover:underline"
@@ -64,9 +67,6 @@ export default function Nav() {
                 Behance
               </A>
             </div>
-            <button class="bg-neutral-950 hover:bg-neutral-300 px-3 py-1 cursor-pointer rounded text-neutral-50">
-              Contact
-            </button>
           </div>
         </div>
       </nav>
