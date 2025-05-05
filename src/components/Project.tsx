@@ -24,6 +24,13 @@ interface ProjectProps {
 export default function Project({ data }: ProjectProps) {
   const { id, client, accentColor, title, tags, featured, summary, keypoints } =
     data;
+    const accentColorLite = () => {
+      var accentColorLite = accentColor.replace("#", "");
+      const r = parseInt(accentColorLite.substring(0, 2), 16);
+      const g = parseInt(accentColorLite.substring(2, 4), 16);
+      const b = parseInt(accentColorLite.substring(4, 6), 16);
+      return (`rgba(${r}, ${g}, ${b}, 0.025)`)
+    }
   const [projectOpen, setProjectOpen] = createSignal<boolean>(false);
 
   createEffect(() => {
@@ -46,7 +53,7 @@ export default function Project({ data }: ProjectProps) {
     <>
       <div class="max-w-7xl mx-auto px-3 pb-3">
         <div class="grid gap-3 py-12">
-          <div class="border-l-8 px-3" style={`border-color: ${accentColor}`}>
+          <div class="border-l-8 px-3" style={`border-color: ${accentColor};background-color: ${accentColorLite()};`}>
             <h3 class="text-xl uppercase tracking-widest">{client}</h3>
           </div>
           <div>
@@ -68,7 +75,7 @@ export default function Project({ data }: ProjectProps) {
           <div class="mb-3 lg:mb-0">
             <video
               controls
-              class="w-full lg:min-w-[960px]"
+              class="w-full lg:min-w-[720px]"
               src={`${featured}`}
             ></video>
           </div>
