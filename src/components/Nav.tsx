@@ -1,19 +1,76 @@
-import { useLocation } from "@solidjs/router";
+import { A, useLocation } from "@solidjs/router";
+import { createEffect, createSignal, onCleanup, onMount } from "solid-js";
 
 export default function Nav() {
   const location = useLocation();
-  const active = (path: string) =>
-    path == location.pathname ? "border-sky-600" : "border-transparent hover:border-sky-600";
+  const [prevScrollY, setPrevScrollY] = createSignal<number>(0);
+  const [scrollingDown, setScrollingDown] = createSignal<boolean>(false);
+
+  function scrollHandler() {
+    let { scrollY } = window;
+    if (scrollY > prevScrollY()) {
+      setPrevScrollY(scrollY);
+      setScrollingDown(true);
+    } else {
+      setPrevScrollY(scrollY);
+      setScrollingDown(false);
+    }
+  }
+
+  onMount(() => {
+    document.addEventListener("scroll", scrollHandler);
+    onCleanup(() => {
+      document.removeEventListener("scroll", scrollHandler);
+    });
+  });
+
+  createEffect(() => {
+    if (prevScrollY() > 0) {
+      document.getElementById("nav")!.classList =
+        "fixed w-full flex p-3 lg:py-12 bg-neutral-50 transition-all duration-1000 border-b border-neutral-300";
+    } else {
+      document.getElementById("nav")!.classList =
+        "fixed w-full flex p-3 lg:py-12 bg-transparent transition-all duration-1000 border-b border-transparent";
+    }
+  });
+
   return (
-    <nav class="bg-sky-800">
-      <ul class="container flex items-center p-3 text-gray-200">
-        <li class={`border-b-2 ${active("/")} mx-1.5 sm:mx-6`}>
-          <a href="/">Home</a>
-        </li>
-        <li class={`border-b-2 ${active("/about")} mx-1.5 sm:mx-6`}>
-          <a href="/about">About</a>
-        </li>
-      </ul>
-    </nav>
+    <>
+      <nav id="nav" class="">
+        <div class="flex w-full max-w-7xl mx-auto justify-between items-center">
+          <div class="w-full flex justify-start">
+            <span class="text-neutral-950 hover:text-neutral-300 cursor-pointer uppercase tracking-widest">
+              Mike Angelo
+            </span>
+          </div>
+          <div class="w-full flex gap-3 justify-end items-center">
+            <div
+              class="cursor-pointer ring hover:ring-neutral-500 ring-neutral-200
+        text-neutral-500 rounded shadow-md hover:scale-[103%] shadow-transparent hover:shadow-neutral-300 px-3 py-1"
+            >
+              Portfolio
+            </div>
+            <div class="flex gap-3">
+              <A
+                class="text-neutral-300 hover:text-neutral-500 hover:underline"
+                href="./"
+              >
+                Github
+              </A>
+              <A
+                class="text-neutral-300 hover:text-neutral-500 hover:underline"
+                href="./"
+              >
+                Behance
+              </A>
+            </div>
+            <button class="bg-neutral-950 hover:bg-neutral-300 px-3 py-1 cursor-pointer rounded text-neutral-50">
+              Contact
+            </button>
+          </div>
+        </div>
+      </nav>
+      <div class="h-[5vh] md:h-[5vh] lg:h-[15vh]"></div>
+    </>
   );
 }
