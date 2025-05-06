@@ -10,12 +10,12 @@ export default function Home() {
         <div class="p-3 xl:p-0 max-w-7xl lg:flex grid gap-3 lg:gap-6 justify-between items-center mx-auto text-center lg:text-left">
           <div class="w-full lg:max-w-[33.3%] row-start-2">
             <img
-              src="./me-2.jpeg"
+              src="https://pub-9edaa7810b9a41c4ad3e323fc3af3bfa.r2.dev/me-on-thing.png"
               class="h-[288px] w-full mx-auto max-w-[540px] object-cover object-[60%_40%] rounded"
             />
           </div>
           <div class="w-full">
-            <h1 class="text-5xl font-bold mb-3">🫵 Hello! I'm Mike.</h1>
+            <h1 class="text-5xl font-bold mb-3">🤘 Hello! I'm Mike.</h1>
             <h3 class="text-xl mb-8">
               <strong>
                 I'm an Art Director and web developer located in New Jersey.
