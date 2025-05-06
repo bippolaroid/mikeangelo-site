@@ -27,10 +27,10 @@ export default function Nav() {
   createEffect(() => {
     if (prevScrollY() > 0) {
       document.getElementById("nav")!.classList =
-        "fixed w-full flex p-3 lg:py-12 bg-neutral-50 transition-all duration-1000 border-b border-neutral-300";
+        "z-100 fixed w-full flex p-3 lg:py-12 bg-neutral-50 transition-all duration-1000 border-b border-neutral-300";
     } else {
       document.getElementById("nav")!.classList =
-        "fixed w-full flex p-3 lg:py-12 bg-transparent transition-all duration-1000 border-b border-transparent";
+        "z-100 fixed w-full flex p-3 lg:py-12 bg-transparent transition-all duration-1000 border-b border-transparent";
     }
   });
 
@@ -44,12 +44,6 @@ export default function Nav() {
             </span>
           </div>
           <div class="w-full flex gap-3 justify-end items-center">
-            {/*<div
-              class="cursor-pointer ring hover:ring-neutral-500 ring-neutral-200
-        text-neutral-500 rounded shadow-md hover:scale-[103%] shadow-transparent hover:shadow-neutral-300 px-3 py-1"
-            >
-              Portfolio
-            </div>*/}
             <button class="bg-neutral-950 hover:bg-neutral-300 px-3 py-1 cursor-pointer rounded text-neutral-50">
               Contact
             </button>
@@ -70,7 +64,7 @@ export default function Nav() {
           </div>
         </div>
       </nav>
-      <div class="h-[5vh] md:h-[5vh] lg:h-[15vh]"></div>
+      <div class="h-[5vh] md:h-[0vh] lg:h-[8vh]"></div>
     </>
   );
 }

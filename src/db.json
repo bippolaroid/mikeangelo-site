@@ -2,103 +2,116 @@
   "projects": [
     {
       "id": 0,
-      "client": "Benzel-Busch Mercedes-Benz",
-      "accentColor": "#07048b",
-      "title": "Reimagining Dealership Advertising",
-      "tags": [
-        "Co-Editor",
-        "Art Director",
-        "Social Media",
-        "Digital Marketing"
-      ],
-      "featured": "./public/bb/BB_PARTS.mp4",
-      "summary": "Breaking away from traditional dealership advertising tropes, Benzel-Busch's series of commercials on Sling TV introduced humor and sophistication. Focusing on services like valet, modern sales approaches, and state-of-the-art parts departments, these ads redefined the dealership image, presenting it as customer-centric and forward-thinking.",
+      "client": "Benzel-Busch Mercedes-Benz & Audi",
+      "accentColor": "#000000",
+      "title": "Electric Vehicle (EV) Confessions",
+      "tags": ["Art Director", "Editor", "Social Media", "Digital Marketing", "Post Production"],
+      "featured": "https://player.vimeo.com/video/1081685107?h=350e0c432c",
+      "summary": "A playful, fast-cut commercial dispelling common EV myths through exaggerated “confessions”—followed by sharp, clean visuals introducing real dealership incentives. I helped develop the storyboard and led art direction on set, guiding shot composition and visual tone. I also handled editing, color, and audio mix. The spot launched on streaming platforms, with a second life as cutdowns across social. It was part of a broader campaign integrated into the dealership’s EV incentive marketing strategy.",
       "keypoints": [
         {
           "id": 0,
-          "featured": "./public/video-1.mp4",
-          "title": "Service with a Smile",
-          "summary": "The commercials emphasized the dealership's commitment to exceptional service, portraying it as seamless and tailored to individual needs."
+          "featured": [
+            "https://pub-9edaa7810b9a41c4ad3e323fc3af3bfa.r2.dev/MA_Website2025_BB_Keypoint1-Img.png"
+          ],
+          "title": "🎥 On-Set Art Direction & Storyboard Concepting",
+          "summary": "I helped shape storyboard, dialing in a tone that felt bold, lighthearted, and visually striking. While on the set, I assisted with shot composition, timing, and set direction to ensure every shot aligned with the storyboard while staying agile for real-time adjustments and creative opportunities."
         },
         {
           "id": 1,
-          "featured": "./public/video-1.mp4",
-          "title": "Service with a Smile",
-          "summary": "The commercials emphasized the dealership's commitment to exceptional service, portraying it as seamless and tailored to individual needs."
+          "featured": [
+            "https://pub-9edaa7810b9a41c4ad3e323fc3af3bfa.r2.dev/MA_Website2025_BB_Keypoint2-Img.png"
+          ],
+          "title": "🖥️ Full Post-Production Execution",
+          "summary": "I owned the edit from raw footage to final delivery—cutting for rhythm, color grading for brand tone, and mixing audio for clarity across platforms. That included custom cutdowns for social."
         },
         {
           "id": 2,
-          "featured": "./public/video-1.mp4",
-          "title": "Service with a Smile",
-          "summary": "The commercials emphasized the dealership's commitment to exceptional service, portraying it as seamless and tailored to individual needs."
+          "featured": [
+            "https://pub-9edaa7810b9a41c4ad3e323fc3af3bfa.r2.dev/MA_Website2025_BB_Keypoint3-Img.png"
+          ],
+          "title": "📲 Social Media Integration with Dealership Marketing",
+          "summary": "I created custom edits optimized for social—short, punchy clips designed for vertical formats and attention spans. These extended the campaign’s reach and reinforced key messages across platforms. The campaign anchored a broader EV campaign, tying into the dealership’s marketing strategy with incentive-based messaging across digital and in-store materials."
         }
       ]
     },
     {
       "id": 1,
-      "client": "Bahlsen North America",
-      "accentColor": "#1E90FF",
-      "title": "Sweet Strategies for a Classic Cookie",
+      "client": "Chubb Insurance",
+      "accentColor": "#7600D7",
+      "title": "The Risk Engineering Center",
       "tags": [
-        "Social Media",
-        "Digital Marketing",
-        "Experiential Marketing",
-        "Content Creation"
+        "Art Director",
+        "Assistant Camera",
+        "Editor",
+        "Post-Production"
       ],
-      "featured": "./public/bahlsen-featured.mp4",
-      "summary": "Looney Advertising partnered with Bahlsen North America to rejuvenate the brand's presence in the U.S. market. Through innovative campaigns spanning TikTok launches, drone-powered sampling, and timely social media initiatives, Bahlsen connected with a new generation of cookie lovers while honoring its rich heritage.",
+      "featured": "https://player.vimeo.com/video/1081724183?h=656edfab71",
+      "summary": "To spotlight Chubb’s state-of-the-art Risk Engineering Center, we created a high-impact video blending interviews, photo-driven storytelling, and sharp motion design. I worked from initial concept through final delivery—scouting locations, crafting the storyboard with my team, co-directing on set, and driving post-production with editing, graphics, and sound. The result: a bold, energetic promo that lives on Chubb’s site and across their social platforms.",
       "keypoints": [
         {
           "id": 0,
-          "featured": "./public/bahlsen-tiktok.mp4",
-          "title": "TikTok Tastes Better",
-          "summary": "Launching Bahlsen on TikTok introduced the brand to younger audiences with creative content that garnered 300,000 views and 2.3 million impressions in just four weeks, all at an efficient cost of $0.05 per view."
+          "featured": [
+            "https://pub-9edaa7810b9a41c4ad3e323fc3af3bfa.r2.dev/MA_Website2025_CH-REC_Keypoint1-Img.png"
+          ],
+          "title": "📑 Collaborative Concept & Storyboard Development",
+          "summary": "From the start, I worked closely with my team to shape the tone and structure of the piece. We physically arranged shot ideas on a whiteboard to fine-tune pacing and transitions—building a visual rhythm that could escalate with the music. That attention to flow early on made the final product feel intentional and dynamic."
         },
         {
           "id": 1,
-          "featured": "./public/bahlsen-drone.mp4",
-          "title": "Drone Snack Attack",
-          "summary": "To celebrate new packaging, Bahlsen executed an industry-first by deploying drones to distribute free samples, creating a buzzworthy experiential marketing moment that delighted consumers."
+          "featured": [
+            "https://pub-9edaa7810b9a41c4ad3e323fc3af3bfa.r2.dev/MA_Website2025_CH-REC_Keypoint2-Img.png"
+          ],
+          "title": "🎥 Hands-On Production & Camera Direction",
+          "summary": "I assisted Camera B during the shoot and handled on-the-fly setups to match the vision we’d storyboarded. I worked closely with the team to shape compositions and direct shots that would play well with layered post effects and build momentum visually as the music kicked in."
         },
         {
           "id": 2,
-          "featured": "./public/bahlsen-hide-them.mp4",
-          "title": "#HideThemAtHome",
-          "summary": "During quarantine, Bahlsen launched a playful campaign encouraging fans to share their creative cookie hiding spots, extending the concept across TV, social media, digital platforms, and PR."
+          "featured": [
+            "https://pub-9edaa7810b9a41c4ad3e323fc3af3bfa.r2.dev/MA_Website2025_CH-REC_Keypoint3-Img.png"
+          ],
+          "title": "🖥️ Post-Production & Motion Design",
+          "summary": "In post, I was deeply involved in editing, adding motion graphics and layered photo treatments, and tightening sound design to give the piece its energetic finish. We balanced corporate clarity with bold visual rhythm, pushing against what you'd expect from a traditional insurance brand."
         }
       ]
     },
     {
       "id": 2,
-      "client": "Chubb Insurance",
-      "accentColor": "#003366",
-      "title": "Engineering Trust: Chubb's Risk Education Center",
+      "client": "Bahlsen North America",
+      "accentColor": "#1E90FF",
+      "title": "Bahlsen Drone Drop Pop-up",
       "tags": [
-        "Brand Strategy",
-        "Content Creation",
-        "Experiential Marketing",
-        "Video Production"
+        "Art Director",
+        "Editor",
+        "Experiential Production",
+        "Digital Marketing"
       ],
-      "featured": "./public/chubb-featured.mp4",
-      "summary": "Looney Advertising partnered with Chubb to rebrand and reposition their state-of-the-art Risk Education Center. By uncovering compelling stories from Chubb's engineers, the campaign highlighted the company's commitment to protection and innovation, culminating in an action-packed film that showcases the center's capabilities.",
+      "featured": "https://player.vimeo.com/video/1081725997?h=6f5a489782",
+      "summary": "A lighthearted, buzz-worthy activation for Bahlsen North America that dropped cookies from the sky—literally. We created a pop-up drone event in Montclair, NJ, where Choco Leibniz packs were delivered to unsuspecting locals. I was part of this from day one: planning, directing, and helping pull the whole thing together on-site. I also edited both a full recap for YouTube and short-form versions for social and digital ads. This one was all about joy, surprise, and cookies in midair.",
       "keypoints": [
         {
           "id": 0,
-          "featured": "./public/chubb-engineers.mp4",
-          "title": "Stories That Shield",
-          "summary": "Through in-depth interviews, the campaign brought to light the personal narratives of Chubb's engineers, emphasizing their dedication to safeguarding clients and reinforcing the brand's human-centric approach."
+          "featured": [
+            "https://pub-9edaa7810b9a41c4ad3e323fc3af3bfa.r2.dev/MA_Website2025_BA-DRONE_Keypoint1-Img.png"
+          ],
+          "title": "📍 Creative & Production Planning",
+          "summary": "Day-of, I oversaw set piece placement and camera coordination, making sure we captured both the chaos and charm of drones delivering cookies. I also directed interactions with the public—guiding genuine, excited reactions that made the final video sing."
         },
         {
           "id": 1,
-          "featured": "./public/chubb-technology.mp4",
-          "title": "Tech-Driven Trust",
-          "summary": "By showcasing the advanced technology within the Risk Education Center, the campaign positioned Chubb as a forward-thinking leader in risk management, blending human expertise with cutting-edge solutions."
+          "featured": [
+            "https://pub-9edaa7810b9a41c4ad3e323fc3af3bfa.r2.dev/MA_Website2025_BA-DRONE_Keypoint2-Img.png"
+          ],
+          "title": "🎥 On-Site Art Direction & Crowd Engagement",
+          "summary": "To celebrate new packaging, Bahlsen executed an industry-first by deploying drones to distribute free samples, creating a buzzworthy experiential marketing moment that delighted consumers."
         },
         {
           "id": 2,
-          "featured": "./public/chubb-experience.mp4",
-          "title": "Immersive Assurance",
-          "summary": "The creation of an engaging film provided audiences with an immersive experience of the Risk Education Center, effectively communicating Chubb's commitment to education and proactive risk prevention."
+          "featured": [
+            "https://pub-9edaa7810b9a41c4ad3e323fc3af3bfa.r2.dev/MA_Website2025_BA-DRONE_Keypoint3-Img.png"
+          ],
+          "title": "🖥️ Editing & Multi-Platform Delivery",
+          "summary": "I edited both an extended recap and a punchy, social-first cutdown, each tuned to its platform. The short version also ran as a rich media digital banner, proving a playful, experiential campaign could extend well beyond the street."
         }
       ]
     }

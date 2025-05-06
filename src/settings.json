@@ -1,0 +1,16 @@
+{
+  "project": [
+    {
+      "id": 0,
+      "keypointTypes": ["mediaGrid", "default", "default"]
+    },
+    {
+      "id": 1,
+      "keypointTypes": ["default", "default", "default"]
+    },
+    {
+      "id": 2,
+      "keypointTypes": ["default", "default", "default"]
+    }
+  ]
+}

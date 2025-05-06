@@ -1,5 +1,7 @@
 import { createEffect, createSignal, For, Show } from "solid-js";
-import ProjectExpanded from "./ProjectKeypoints";
+import { renderMedia } from "./utils";
+import ProjectKeypoints from "./ProjectKeypoints";
+import { render } from "solid-js/web";
 
 type ProjectData = {
   id: number;
@@ -11,7 +13,7 @@ type ProjectData = {
   summary: string;
   keypoints: {
     id: number;
-    featured: string;
+    featured: string[];
     title: string;
     summary: string;
   }[];
@@ -51,10 +53,10 @@ export default function Project({ data }: ProjectProps) {
 
   return (
     <>
-      <div class="max-w-7xl mx-auto px-3 pb-3">
+      <div class="max-w-7xl mx-auto px-3 xl:px-0 pb-3">
         <div class="grid gap-3 py-12">
-          <div class="border-l-8 px-3" style={`border-color: ${accentColor};background-color: ${accentColorLite()};`}>
-            <h3 class="text-xl uppercase tracking-widest">{client}</h3>
+          <div class="border-l-8 border-b border-b-neutral-100 px-3" style={`border-left-color: ${accentColor};`}>
+            <h3 class="text-xl uppercase tracking-widest text-neutral-300">{client}</h3>
           </div>
           <div>
             <h2 class="text-3xl">{title}</h2>
@@ -72,15 +74,11 @@ export default function Project({ data }: ProjectProps) {
           </div>
         </div>
         <div class="lg:flex">
-          <div class="mb-3 lg:mb-0">
-            <video
-              controls
-              class="w-full lg:min-w-[720px]"
-              src={`${featured}`}
-            ></video>
+          <div class="lg:w-[66.6%] mb-3 lg:mb-0">
+            {renderMedia(featured)}
           </div>
-          <div>
-            <div class="p-3 lg:ml-3 ring ring-neutral-200 rounded min-w-sm">
+          <div class="lg:w-[33.3%]">
+            <div class="p-3 lg:ml-3 ring ring-neutral-200 rounded">
               <p>{summary}</p>
               <button
                 id={`project-${id.toString()}-button`}
@@ -96,7 +94,7 @@ export default function Project({ data }: ProjectProps) {
         </div>
       </div>
       <Show when={projectOpen()}>
-        <ProjectExpanded data={keypoints} />
+        <ProjectKeypoints data={keypoints} projectId={id} />
       </Show>
     </>
   );
