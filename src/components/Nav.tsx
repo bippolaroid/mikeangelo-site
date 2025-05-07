@@ -44,19 +44,21 @@ export default function Nav() {
             </span>
           </div>
           <div class="w-full flex gap-3 justify-end items-center">
-            <button class="bg-neutral-950 hover:bg-neutral-300 px-3 py-1 cursor-pointer rounded text-neutral-50">
-              Contact
-            </button>
+            <A href="./#footer">
+              <button class="bg-neutral-950 hover:bg-neutral-300 px-3 py-1 cursor-pointer rounded text-neutral-50">
+                Contact
+              </button>
+            </A>
             <div class="flex gap-3">
               <A
                 class="text-neutral-300 hover:text-neutral-500 hover:underline"
-                href="./"
+                href="https://github.com/bippolaroid"
               >
                 Github
               </A>
               <A
                 class="text-neutral-300 hover:text-neutral-500 hover:underline"
-                href="./"
+                href="https://www.behance.net/mikeangelotho"
               >
                 Behance
               </A>

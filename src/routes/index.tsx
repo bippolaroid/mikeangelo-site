@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <main class="mx-auto">
       <div class=" lg:pb-10 border-b border-neutral-300 bg-gradient-to-t from-neutral-100 to-neutral-50 py-12 flex items-center">
-        <div class="p-3 xl:p-0 max-w-7xl lg:flex grid gap-3 lg:gap-6 justify-between items-center mx-auto text-center lg:text-left">
+        <div class="p-3 2xl:p-0 max-w-7xl lg:flex grid gap-3 lg:gap-6 justify-between items-center mx-auto text-center lg:text-left">
           <div class="w-full lg:max-w-[33.3%] row-start-2">
             <img
               src="https://pub-9edaa7810b9a41c4ad3e323fc3af3bfa.r2.dev/me-on-thing.jpg"
@@ -28,7 +28,7 @@ export default function Home() {
               web design & app development. Please feel free to{" "}
               <A
                 class="underline text-neutral-950 hover:text-neutral-300"
-                href=""
+                href="./#footer"
               >
                 reach out!
               </A>{" "}
