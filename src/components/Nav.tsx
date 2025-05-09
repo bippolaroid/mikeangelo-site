@@ -19,7 +19,7 @@ export default function Nav() {
   }
 
   function checkWindowWidth() {
-    let {innerWidth} = window;
+    let { innerWidth } = window;
     return innerWidth > 430 ? false : true;
   }
   onMount(() => {
@@ -48,32 +48,35 @@ export default function Nav() {
       <nav id="nav" class="">
         <div class="flex w-full max-w-7xl mx-auto justify-between items-center">
           <div class="w-full flex justify-start">
-            <span class="text-neutral-950 hover:text-neutral-300 cursor-pointer uppercase tracking-widest">
+            <A
+              href="./"
+              class="text-neutral-950 hover:text-neutral-300 cursor-pointer uppercase tracking-widest"
+            >
               Mike Angelo
-            </span>
+            </A>
           </div>
           <Show when={!isMobile()}>
-          <div class="w-full flex gap-3 justify-end items-center">
-            <A href="./#footer">
-              <button class="bg-neutral-950 hover:bg-neutral-300 px-3 py-1 cursor-pointer rounded text-neutral-50">
-                Contact
-              </button>
-            </A>
-            <div class="flex gap-3">
-              <A
-                class="text-neutral-300 hover:text-neutral-500 hover:underline"
-                href="https://github.com/bippolaroid"
-              >
-                Github
+            <div class="w-full flex gap-3 justify-end items-center">
+              <A href="./#footer">
+                <button class="bg-neutral-950 hover:bg-neutral-300 px-3 py-1 cursor-pointer rounded text-neutral-50">
+                  Contact
+                </button>
               </A>
-              <A
-                class="text-neutral-300 hover:text-neutral-500 hover:underline"
-                href="https://www.behance.net/mikeangelotho"
-              >
-                Behance
-              </A>
+              <div class="flex gap-3">
+                <A
+                  class="text-neutral-300 hover:text-neutral-500 hover:underline"
+                  href="https://github.com/bippolaroid"
+                >
+                  Github
+                </A>
+                <A
+                  class="text-neutral-300 hover:text-neutral-500 hover:underline"
+                  href="https://www.behance.net/mikeangelotho"
+                >
+                  Behance
+                </A>
+              </div>
             </div>
-          </div>
           </Show>
         </div>
       </nav>

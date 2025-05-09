@@ -15,19 +15,26 @@ export default function Home() {
             />
           </div>
           <div class="w-full">
-            <h1 class="text-5xl font-bold mb-3">🤘 Hello! I'm Mike.</h1>
-            <h3 class="text-xl mb-8">
-              <strong>
-                I'm an Art Director and web developer located in New Jersey.
-              </strong>
+            <h1 class="text-5xl lg:text-7xl font-bold mb-3">
+              Hello! I'm Mike 🤘
+            </h1>
+            <h3 class="text-xl lg:text-3xl">
+              I'm an{" "}
+              <span class="font-bold underline cursor-pointer text-neutral-950 hover:text-neutral-300">
+                Art Director
+              </span>{" "}
+              and{" "}
+              <span class="font-bold underline cursor-pointer text-neutral-950 hover:text-neutral-300">
+                web developer
+              </span>{" "}
+              in New Jersey.
             </h3>
-            <hr class="border-neutral-300 my-12 max-w-[72px] mx-auto lg:mx-0" />
 
-            <p class="text-xl max-w-3xl xl:max-w-[100vw] mb-6 text-left">
-              I specialize in design, editing, advertising campaigns, digital marketing,
-              web design & app development. Please feel free to{" "}
+            <p class="text-lg max-w-3xl xl:max-w-[100vw] mb-6 mt-12 lg:mt-3 text-left">
+              I specialize in design, editing, advertising campaigns, digital
+              marketing, web design & app development. Please feel free to{" "}
               <A
-                class="underline text-neutral-950 hover:text-neutral-300"
+                class="underline text-neutral-950 hover:text-neutral-300 font-bold"
                 href="./#footer"
               >
                 reach out!
