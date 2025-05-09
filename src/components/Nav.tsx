@@ -1,5 +1,6 @@
 import { A, useLocation } from "@solidjs/router";
-import { createEffect, createSignal, onCleanup, onMount } from "solid-js";
+import { createEffect, createSignal, onCleanup, onMount, Show } from "solid-js";
+const [isMobile, setIsMobile] = createSignal<boolean>();
 
 export default function Nav() {
   const location = useLocation();
@@ -17,10 +18,18 @@ export default function Nav() {
     }
   }
 
+  function checkWindowWidth() {
+    let {innerWidth} = window;
+    return innerWidth > 430 ? false : true;
+  }
   onMount(() => {
+    setIsMobile(checkWindowWidth());
+
+    document.addEventListener("resize", checkWindowWidth);
     document.addEventListener("scroll", scrollHandler);
     onCleanup(() => {
-      document.removeEventListener("scroll", scrollHandler);
+      document.removeEventListener("resize", scrollHandler);
+      document.removeEventListener("scroll", checkWindowWidth);
     });
   });
 
@@ -43,6 +52,7 @@ export default function Nav() {
               Mike Angelo
             </span>
           </div>
+          <Show when={!isMobile()}>
           <div class="w-full flex gap-3 justify-end items-center">
             <A href="./#footer">
               <button class="bg-neutral-950 hover:bg-neutral-300 px-3 py-1 cursor-pointer rounded text-neutral-50">
@@ -64,9 +74,10 @@ export default function Nav() {
               </A>
             </div>
           </div>
+          </Show>
         </div>
       </nav>
-      <div class="h-[5vh] md:h-[0vh] lg:h-[8vh]"></div>
+      <div class="h-[5vh] md:h-[5vh] lg:h-[8vh] xl:h-[11vh]"></div>
     </>
   );
 }
