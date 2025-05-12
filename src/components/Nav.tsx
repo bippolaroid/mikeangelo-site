@@ -80,7 +80,7 @@ export default function Nav() {
           </Show>
         </div>
       </nav>
-      <div class="h-[5vh] md:h-[5vh] lg:h-[8vh] xl:h-[11vh]"></div>
+      <div class="h-[5vh] md:h-[5vh] lg:h-[8vh] xl:h-[12vh]"></div>
     </>
   );
 }
