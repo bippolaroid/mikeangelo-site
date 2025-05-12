@@ -26,8 +26,9 @@ export default function Footer() {
   return (
     <footer
       id="footer"
-      class="w-full flex gap-3 items-center justify-between bg-neutral-950 px-3 py-24"
+      class="w-full bg-neutral-950 2xl:mt-3"
     >
+      <div class="max-w-7xl mx-auto flex gap-3 items-center justify-between px-3 2xl:px-0 py-24">
       <div></div>
       <div class="text-right grid gap-3">
         <div class="text-neutral-300 text-5xl">Let's build something cool!</div>
@@ -41,6 +42,7 @@ export default function Footer() {
             </div>
           </Show>
         </div>
+      </div>
       </div>
     </footer>
   );
