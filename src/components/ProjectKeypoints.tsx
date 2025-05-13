@@ -8,7 +8,7 @@ type Keypoints = {
 
 export default function ProjectKeypoints({ data, projectId }: Keypoints) {
   return (
-    <div class="bg-neutral-100 border-t border-neutral-300">
+    <div class="bg-neutral-100 border-t border-neutral-300 py-12">
       <For each={data}>
         {(project) => {
           return <ProjectKeypoint keypoint={project} projectId={projectId} />;

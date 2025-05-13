@@ -51,7 +51,7 @@ export default function ProjectPage({ data }: ProjectProps) {
       <div class="max-w-7xl mx-auto px-3 xl:px-0 pb-12 lg:pb-8">
         <div class="grid gap-3 py-12">
           <div
-            class="flex gap-4 items-center justify-between rounded-lg shadow-md shadow-neutral-400 px-4 py-4"
+            class="flex gap-3 items-center justify-between rounded-lg shadow-md shadow-neutral-400 px-3 py-3"
             style={`background-color: ${accentColor};`}
           >
             <img class="max-h-[36px] max-w-[144px]" src={clientLogo} />

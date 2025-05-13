@@ -33,7 +33,7 @@ export function ProjectKeypoint({ keypoint, projectId }: Keypoint) {
       <div class="max-w-5xl mx-auto py-3 xl:px-0 px-3">
         <div class="grid gap-6 lg:flex justify-center items-center">
           <div>
-            <h2 class="text-3xl py-6 text-neutral-500">
+            <h2 class="text-3xl pb-6 text-neutral-500">
               {keypoint.title}
             </h2>
             <p class="lg:p-3 max-w-3xl mx-auto lg:border-l border-neutral-300 pb-3">
