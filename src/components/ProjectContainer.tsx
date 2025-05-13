@@ -1,11 +1,11 @@
 import { createEffect, createSignal, For, Show } from "solid-js";
 import { renderMedia } from "./utils";
 import ProjectKeypoints from "./ProjectKeypoints";
-import { render } from "solid-js/web";
 
-type ProjectData = {
+export type ProjectData = {
   id: number;
   client: string;
+  clientLogo: string;
   accentColor: string;
   title: string;
   tags: string[];
@@ -23,7 +23,7 @@ interface ProjectProps {
   data: ProjectData;
 }
 
-export default function Project({ data }: ProjectProps) {
+export default function ProjectContainer({ data }: ProjectProps) {
   const { id, client, accentColor, title, tags, featured, summary, keypoints } =
     data;
     const accentColorLite = () => {

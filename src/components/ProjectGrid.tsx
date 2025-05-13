@@ -1,7 +1,10 @@
-import { For } from "solid-js";
-import * as DB from "../db.json";
-import { ProjectData } from "~/components/ProjectContainer";
 import { A } from "@solidjs/router";
+import { For } from "solid-js";
+import { ProjectData } from "./ProjectContainer";
+
+interface ProjectGridProps {
+  data: ProjectData[];
+}
 
 interface ImageGridCellProps {
   colspan?: number;
@@ -38,29 +41,28 @@ function ImageGridCell(props: ImageGridCellProps) {
   );
 }
 
-export default function ArtDirection() {
+export default function ProjectGrid(props: ProjectGridProps) {
+  let { data } = props;
   return (
-    <main class="w-full p-3 xl:p-0 max-w-7xl mx-auto">
-      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1 justify-center items-center w-full">
-        <For each={DB.projects}>
-          {(project, index) => {
-            if (index() === 0) {
-              return (
-                <>
-                  <ImageGridCell colspan={2} project={project} />
-                </>
-              );
-            } else {
-              return (
-                <>
-                  {" "}
-                  <ImageGridCell project={project} />
-                </>
-              );
-            }
-          }}
-        </For>
-      </div>
-    </main>
+    <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1 justify-center items-center w-full">
+      <For each={data}>
+        {(project, index) => {
+          if (index() === 0) {
+            return (
+              <>
+                <ImageGridCell colspan={2} project={project} />
+              </>
+            );
+          } else {
+            return (
+              <>
+                {" "}
+                <ImageGridCell project={project} />
+              </>
+            );
+          }
+        }}
+      </For>
+    </div>
   );
 }

@@ -3,9 +3,16 @@
     {
       "id": 0,
       "client": "Benzel-Busch Mercedes-Benz & Audi",
+      "clientLogo": "https://pub-9edaa7810b9a41c4ad3e323fc3af3bfa.r2.dev/mercedes-star.png",
       "accentColor": "#000000",
       "title": "Electric Vehicle (EV) Confessions",
-      "tags": ["Art Director", "Editor", "Social Media", "Digital Marketing", "Post Production"],
+      "tags": [
+        "Art Director",
+        "Editor",
+        "Social Media",
+        "Digital Marketing",
+        "Post Production"
+      ],
       "featured": "https://pub-9edaa7810b9a41c4ad3e323fc3af3bfa.r2.dev/ev-thumb.png",
       "summary": "A playful, fast-cut commercial dispelling common EV myths through exaggerated “confessions”—followed by sharp, clean visuals introducing real dealership incentives. I helped develop the storyboard and led art direction on set, guiding shot composition and visual tone. I also handled editing, color, and audio mix. The spot launched on streaming platforms, with a second life as cutdowns across social. It was part of a broader campaign integrated into the dealership’s EV incentive marketing strategy.",
       "keypoints": [
@@ -38,14 +45,10 @@
     {
       "id": 1,
       "client": "Chubb Insurance",
+      "clientLogo": "https://pub-9edaa7810b9a41c4ad3e323fc3af3bfa.r2.dev/chubb-logo.png",
       "accentColor": "#7600D7",
       "title": "The Risk Engineering Center",
-      "tags": [
-        "Art Director",
-        "Assistant Camera",
-        "Editor",
-        "Post-Production"
-      ],
+      "tags": ["Art Director", "Assistant Camera", "Editor", "Post-Production"],
       "featured": "https://pub-9edaa7810b9a41c4ad3e323fc3af3bfa.r2.dev/chubb-thumb.png",
       "summary": "To spotlight Chubb’s state-of-the-art Risk Engineering Center, we created a high-impact video blending interviews, photo-driven storytelling, and sharp motion design. I worked from initial concept through final delivery—scouting locations, crafting the storyboard with my team, co-directing on set, and driving post-production with editing, graphics, and sound. The result: a bold, energetic promo that lives on Chubb’s site and across their social platforms.",
       "keypoints": [
@@ -78,6 +81,7 @@
     {
       "id": 2,
       "client": "Bahlsen North America",
+      "clientLogo": "https://pub-9edaa7810b9a41c4ad3e323fc3af3bfa.r2.dev/mercedes-star.png",
       "accentColor": "#1E90FF",
       "title": "Bahlsen Drone Drop Pop-up",
       "tags": [

@@ -1,21 +1,22 @@
 import { A, json } from "@solidjs/router";
 import { createSignal, For, onMount, Show } from "solid-js";
-import Project from "~/components/Project";
+import Project from "~/components/ProjectContainer";
 import * as DB from "../db.json";
+import ProjectGrid from "~/components/ProjectGrid";
 
 export default function Home() {
   return (
-    <main class="mx-auto">
+    <main class="p-4 mx-auto">
       <div class=" lg:pb-10 border-b border-neutral-300 bg-gradient-to-t from-neutral-100 to-neutral-50 py-12 flex items-center">
-        <div class="p-3 2xl:p-0 max-w-7xl lg:flex grid gap-3 lg:gap-6 justify-between items-center mx-auto text-center lg:text-left">
-          <div class="w-full lg:max-w-[33.3%] row-start-2">
+        <div class="max-w-7xl lg:flex grid gap-3 lg:gap-24 justify-between items-center mx-auto text-center lg:text-left">
+          <div class="h-full w-full mx-auto max-w-[360px] row-start-2 max-h-[360px] overflow-hidden rounded-full">
             <img
               src="https://pub-9edaa7810b9a41c4ad3e323fc3af3bfa.r2.dev/me-on-thing.jpg"
-              class="h-[288px] w-full mx-auto max-w-[540px] object-cover object-[60%_40%] rounded"
+              class="rounded-full object-cover w-full -translate-x-10 translate-y-5 scale-200 md:scale-200"
             />
           </div>
           <div class="w-full">
-            <h1 class="text-5xl lg:text-7xl font-bold mb-3">
+            <h1 class="text-5xl lg:text-7xl font-bold mb-4">
               Hello! I'm Mike 🤘
             </h1>
             <h3 class="text-xl lg:text-3xl">
@@ -30,7 +31,7 @@ export default function Home() {
               in New Jersey.
             </h3>
 
-            <p class="text-lg max-w-3xl xl:max-w-[100vw] mb-6 mt-12 lg:mt-3 text-left">
+            <p class="text-lg max-w-3xl xl:max-w-[100vw] mb-4 mt-4 lg:mt-3 text-left">
               I specialize in design, editing, advertising campaigns, digital
               marketing, web design & app development. Please feel free to{" "}
               <A
@@ -44,14 +45,9 @@ export default function Home() {
           </div>
         </div>
       </div>
-      {/*
-      Implement 2x2 grid for xl maybe lg
-      */}
-      <For each={DB.projects}>
-        {(project) => {
-          return <Project data={project} />;
-        }}
-      </For>
+      <div class="mt-4">
+      <ProjectGrid data={DB.projects} />
+      </div>
     </main>
   );
 }

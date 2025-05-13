@@ -26,7 +26,7 @@ export default function Footer() {
   return (
     <footer
       id="footer"
-      class="w-full bg-neutral-950 2xl:mt-3"
+      class="w-full bg-neutral-950"
     >
       <div class="max-w-7xl mx-auto flex gap-3 items-center justify-between px-3 2xl:px-0 py-24">
       <div></div>
