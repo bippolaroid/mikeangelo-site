@@ -31,7 +31,7 @@ export default function Home() {
 
             <p class="text-lg max-w-3xl xl:max-w-[100vw] mb-3 mt-3 text-left">
               I specialize in design, editing, advertising campaigns, digital
-              marketing, web design & app development. Please feel free to{" "}
+              marketing, web design & web app development. Please feel free to{" "}
               <A
                 class="underline text-neutral-950 hover:text-neutral-300 font-bold"
                 href="./#footer"
