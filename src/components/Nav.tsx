@@ -34,18 +34,19 @@ export default function Nav() {
   });
 
   createEffect(() => {
+    let navStyle = document.getElementById("nav");
     if (prevScrollY() > 0) {
-      document.getElementById("nav")!.classList =
-        "z-100 fixed w-full flex p-3 lg:py-12 bg-neutral-50 transition-all duration-1000 border-b border-neutral-300";
+      navStyle!.style.borderColor = "#d4d4d4";
+      navStyle!.style.backgroundColor = "#fafafa";
     } else {
-      document.getElementById("nav")!.classList =
-        "z-100 fixed w-full flex p-3 lg:py-12 bg-transparent transition-all duration-1000 border-b border-transparent";
+      navStyle!.style.borderColor = "transparent";
+      navStyle!.style.backgroundColor = "transparent";
     }
   });
 
   return (
     <>
-      <nav id="nav" class="">
+      <nav id="nav" class="z-1000 fixed w-full flex p-3 lg:py-12 bg-transparent transition-all duration-1000 border-b border-transparent">
         <div class="flex w-full max-w-7xl mx-auto justify-between items-center">
           <div class="w-full flex justify-start">
             <A
@@ -80,7 +81,7 @@ export default function Nav() {
           </Show>
         </div>
       </nav>
-      <div class="h-[5vh] md:h-[5vh] lg:h-[8vh] xl:h-[15vh]"></div>
+      <div class="h-[5vh] md:h-[5vh] lg:h-[8vh] xl:h-[10vh]"></div>
     </>
   );
 }

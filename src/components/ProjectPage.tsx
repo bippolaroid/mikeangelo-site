@@ -23,18 +23,12 @@ interface ProjectProps {
   data: ProjectData;
 }
 
-export default function ProjectContainer({ data }: ProjectProps) {
+export default function ProjectPage({ data }: ProjectProps) {
   const { id, client, accentColor, title, tags, featured, summary, keypoints } =
     data;
-    const accentColorLite = () => {
-      var accentColorLite = accentColor.replace("#", "");
-      const r = parseInt(accentColorLite.substring(0, 2), 16);
-      const g = parseInt(accentColorLite.substring(2, 4), 16);
-      const b = parseInt(accentColorLite.substring(4, 6), 16);
-      return (`rgba(${r}, ${g}, ${b}, 0.025)`)
-    }
-  const [projectOpen, setProjectOpen] = createSignal<boolean>(false);
+  const [projectOpen, setProjectOpen] = createSignal<boolean>(true);
 
+  /*
   createEffect(() => {
     let button = document.getElementById(
       `project-${id.toString()}-button`
@@ -50,16 +44,22 @@ export default function ProjectContainer({ data }: ProjectProps) {
       button.style.border = "";
     }
   });
+  */
 
   return (
     <>
-      <div class="max-w-7xl mx-auto px-3 xl:px-0 pb-3">
+      <div class="max-w-7xl mx-auto px-3 xl:px-0 pb-12 lg:pb-8">
         <div class="grid gap-3 py-12">
-          <div class="border-l-8 border-b border-b-neutral-100 px-3" style={`border-left-color: ${accentColor};`}>
-            <h3 class="text-xl uppercase tracking-widest text-neutral-300">{client}</h3>
+          <div
+            class="rounded shadow-md shadow-neutral-400 px-4 py-4"
+            style={`background-color: ${accentColor};`}
+          >
+            <h3 class="text-xl uppercase tracking-widest text-neutral-300">
+              {client}
+            </h3>
           </div>
-          <div>
-            <h2 class="text-3xl">{title}</h2>
+          <div class="mt-6">
+            <h2 class="text-3xl lg:text-5xl font-bold">{title}</h2>
           </div>
           <div class="flex gap-1 items-center">
             <For each={tags}>
@@ -74,13 +74,11 @@ export default function ProjectContainer({ data }: ProjectProps) {
           </div>
         </div>
         <div class="lg:flex">
-          <div class="lg:w-[66.6%] mb-3 lg:mb-0">
-            {renderMedia(featured)}
-          </div>
-          <div class="lg:w-[33.3%]">
+          <div class="w-full mb-3 lg:mb-0">{renderMedia(featured)}</div>
+          <div class="w-full">
             <div class="p-3 lg:ml-3 ring ring-neutral-200 rounded">
               <p>{summary}</p>
-              <button
+              {/*<button
                 id={`project-${id.toString()}-button`}
                 class="bg-neutral-950 hover:bg-neutral-300 mt-3 px-3 py-1 cursor-pointer rounded text-neutral-50"
                 onClick={() => {
@@ -88,7 +86,7 @@ export default function ProjectContainer({ data }: ProjectProps) {
                 }}
               >
                 {projectOpen() ? "Close" : "See More"}
-              </button>
+              </button>*/}
             </div>
           </div>
         </div>
