@@ -24,7 +24,7 @@ interface ProjectProps {
 }
 
 export default function ProjectPage({ data }: ProjectProps) {
-  const { id, client, accentColor, title, tags, featured, summary, keypoints } =
+  const { id, client, accentColor, title, tags, featured, summary, keypoints, clientLogo } =
     data;
   const [projectOpen, setProjectOpen] = createSignal<boolean>(true);
 
@@ -51,10 +51,11 @@ export default function ProjectPage({ data }: ProjectProps) {
       <div class="max-w-7xl mx-auto px-3 xl:px-0 pb-12 lg:pb-8">
         <div class="grid gap-3 py-12">
           <div
-            class="rounded shadow-md shadow-neutral-400 px-4 py-4"
+            class="flex gap-4 items-center justify-between rounded-lg shadow-md shadow-neutral-400 px-4 py-4"
             style={`background-color: ${accentColor};`}
           >
-            <h3 class="text-xl uppercase tracking-widest text-neutral-300">
+            <img class="max-h-[36px] max-w-[144px]" src={clientLogo} />
+            <h3 class="text-xl uppercase tracking-widest text-neutral-50">
               {client}
             </h3>
           </div>
@@ -65,7 +66,7 @@ export default function ProjectPage({ data }: ProjectProps) {
             <For each={tags}>
               {(tag) => {
                 return (
-                  <div class="cursor-default bg-neutral-300 px-3 rounded text-sm text-neutral-50">
+                  <div class="cursor-default bg-neutral-300 px-3 rounded-lg text-sm text-neutral-50">
                     {tag}
                   </div>
                 );
@@ -76,7 +77,7 @@ export default function ProjectPage({ data }: ProjectProps) {
         <div class="lg:flex">
           <div class="w-full mb-3 lg:mb-0">{renderMedia(featured)}</div>
           <div class="w-full">
-            <div class="p-3 lg:ml-3 ring ring-neutral-200 rounded">
+            <div class="p-3 lg:ml-3 ring ring-neutral-200 rounded-lg">
               <p>{summary}</p>
               {/*<button
                 id={`project-${id.toString()}-button`}

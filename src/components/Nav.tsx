@@ -56,7 +56,7 @@ export default function Nav() {
               Mike Angelo
             </A>
           </div>
-          <Show when={!isMobile()}>
+          {/*<Show when={!isMobile()}>*/}
             <div class="w-full flex gap-3 justify-end items-center">
               <A href="./#footer">
                 <button class="bg-neutral-950 hover:bg-neutral-300 px-3 py-1 cursor-pointer rounded text-neutral-50">
@@ -78,7 +78,7 @@ export default function Nav() {
                 </A>
               </div>
             </div>
-          </Show>
+          {/*</Show>*/}
         </div>
       </nav>
       <div class="h-[5vh] md:h-[5vh] lg:h-[8vh] xl:h-[10vh]"></div>

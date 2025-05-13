@@ -13,7 +13,7 @@ interface ImageGridCellProps {
 
 function ImageGridCell(props: ImageGridCellProps) {
   let { colspan, project } = props;
-  let { featured, accentColor, clientLogo, id } = project;
+  let { featured, accentColor, clientLogo, id, title } = project;
 
   //let emblemStyle = `background-color: ${accentColor}`;
   let containerStyle = `grid-column: span ${colspan} / span ${colspan}`;
@@ -22,14 +22,32 @@ function ImageGridCell(props: ImageGridCellProps) {
     <div
       class="hover:z-100 rounded-2xl overflow-hidden cursor-pointer md:hover:scale-110 hover:-translate-y-4 md:hover:-translate-y-12 shadow-xl brightness-90 hover:brightness-110 shadow-transparent hover:shadow-neutral-700 transition-all duration-3000 ease-out"
       style={containerStyle}
+      onMouseEnter={() => {
+        document.getElementById(`client-tag-${id}`)!.style.opacity = "100";
+        document.getElementById(`client-emblem-${id}`)!.style.backgroundColor =
+          accentColor;
+      }}
+      onMouseLeave={() => {
+        document.getElementById(`client-tag-${id}`)!.style.opacity = "0";
+        document.getElementById(`client-emblem-${id}`)!.style.backgroundColor =
+          "transparent";
+      }}
     >
       {" "}
       <A href={`/project?id=${id}`}>
-        <div class="absolute backdrop-blur backdrop-brightness-90 rounded-lg m-2 max-w-[60px] ring ring-transparent max-h-[60px] h-full w-full flex justify-center items-center">
-          <img
-            class="p-4 max-h-[60px] max-w-[84px]"
-            src={clientLogo}
-          />
+        <div class="absolute flex h-full m-2 gap-2 max-h-[60px]">
+          <div
+            id={`client-emblem-${id}`}
+            class="backdrop-blur backdrop-brightness-90 rounded-lg max-w-[60px] ring ring-[rgb(0,0,0,0.1)] max-h-[60px] h-full w-full flex justify-center items-center transition-all duration-3000 ease-out"
+          >
+            <img class="p-4 max-h-[60px] max-w-[84px]" src={clientLogo} />
+          </div>
+          <div
+            id={`client-tag-${id}`}
+            class="opacity-0 uppercase text-neutral-700 tracking-widest text-sm transition-all duration-3000 ease-out backdrop-blur-xl ring ring-[rgb(0,0,0,0.1)] backdrop-brightness-125 rounded-lg p-4 h-full flex items-center"
+          >
+            {title}
+          </div>
         </div>
 
         <img
