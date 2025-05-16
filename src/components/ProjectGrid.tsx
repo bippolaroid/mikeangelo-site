@@ -18,7 +18,7 @@ function ProjectCell(props: ProjectCellProps) {
   return (
     <div
       style={`grid-column: span ${colspan} / span ${colspan}`}
-      class="hover:z-100 overflow-hidden cursor-pointer max-h-[324px] md:hover:scale-110 hover:-translate-y-4 md:hover:-translate-y-12 shadow-xl brightness-90 hover:brightness-110 shadow-transparent hover:shadow-neutral-700 transition-all duration-3000 ease-out"
+      class="hover:z-100 overflow-hidden cursor-pointer max-h-[324px] hover:scale-110 hover:-translate-y-4 md:hover:-translate-y-12 shadow-xl brightness-90 hover:brightness-110 shadow-transparent hover:shadow-neutral-700 transition-all duration-3000 ease-out"
       onMouseEnter={() => {
         document.getElementById(`client-tag-${id}`)!.style.opacity = "100";
         document.getElementById(`client-emblem-${id}`)!.style.backgroundColor =
@@ -51,7 +51,7 @@ function ProjectCell(props: ProjectCellProps) {
         </div>
 
         <img
-          class="h-100 transition-all duration-3000 ease-out w-full object-cover max-h-[288px] lg:max-h-[360px] overflow-hidden"
+          class="h-90 transition-all duration-3000 ease-out w-full object-cover overflow-hidden"
           src={featured}
         />
       </A>
@@ -64,12 +64,15 @@ export default function ProjectGrid(props: ProjectGridProps) {
   let grid = [0, 3, 6, 9, 12];
 
   return (
-    <div class="max-w-7xl my-12 mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 justify-center items-center w-full">
+    <div class="max-w-7xl my-12 mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1 justify-center items-center w-full">
       <For each={data}>
         {(project) => {
           let colspan;
           if (grid.includes(project.id)) {
+            
             colspan = 2;
+          } else {
+            colspan = 1;
           }
           return <ProjectCell colspan={colspan} project={project} />;
         }}
