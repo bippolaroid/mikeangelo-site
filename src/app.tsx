@@ -8,12 +8,12 @@ import Footer from "./components/Footer";
 export default function App() {
   return (
     <Router
-      root={props => (
-        <>
+      root={(props) => (
+        <div class="cursor-default">
           <Nav />
           <Suspense>{props.children}</Suspense>
           <Footer />
-          </>
+        </div>
       )}
     >
       <FileRoutes />

@@ -47,7 +47,7 @@
       "client": "Chubb Insurance",
       "clientLogo": "https://pub-9edaa7810b9a41c4ad3e323fc3af3bfa.r2.dev/chubb-logo.png",
       "accentColor": "#7600D7",
-      "title": "The Risk Engineering Center",
+      "title": "Risk Engineering Center",
       "tags": ["Art Director", "Assistant Camera", "Editor", "Post-Production"],
       "featured": "https://pub-9edaa7810b9a41c4ad3e323fc3af3bfa.r2.dev/chubb-thumb.png",
       "summary": "To spotlight Chubb’s state-of-the-art Risk Engineering Center, we created a high-impact video blending interviews, photo-driven storytelling, and sharp motion design. I worked from initial concept through final delivery—scouting locations, crafting the storyboard with my team, co-directing on set, and driving post-production with editing, graphics, and sound. The result: a bold, energetic promo that lives on Chubb’s site and across their social platforms.",
@@ -83,7 +83,7 @@
       "client": "Bahlsen North America",
       "clientLogo": "https://pub-9edaa7810b9a41c4ad3e323fc3af3bfa.r2.dev/bahlsen-logo.png",
       "accentColor": "#1E90FF",
-      "title": "Bahlsen Drone Drop Pop-up",
+      "title": "Drone Drop Pop-up",
       "tags": [
         "Art Director",
         "Editor",
@@ -100,6 +100,48 @@
           ],
           "title": "📍 Creative & Production Planning",
           "summary": "Day-of, I oversaw set piece placement and camera coordination, making sure we captured both the chaos and charm of drones delivering cookies. I also directed interactions with the public—guiding genuine, excited reactions that made the final video sing."
+        },
+        {
+          "id": 1,
+          "featured": [
+            "https://pub-9edaa7810b9a41c4ad3e323fc3af3bfa.r2.dev/MA_Website2025_BA-DRONE_Keypoint2-Img.png"
+          ],
+          "title": "🎥 On-Site Art Direction & Crowd Engagement",
+          "summary": "To celebrate new packaging, Bahlsen executed an industry-first by deploying drones to distribute free samples, creating a buzzworthy experiential marketing moment that delighted consumers."
+        },
+        {
+          "id": 2,
+          "featured": [
+            "https://pub-9edaa7810b9a41c4ad3e323fc3af3bfa.r2.dev/MA_Website2025_BA-DRONE_Keypoint3-Img.png"
+          ],
+          "title": "🖥️ Editing & Multi-Platform Delivery",
+          "summary": "I edited both an extended recap and a punchy, social-first cutdown, each tuned to its platform. The short version also ran as a rich media digital banner, proving a playful, experiential campaign could extend well beyond the street."
+        }
+      ]
+    },
+        {
+      "id": 3,
+      "client": "Loopwell",
+      "clientLogo": "https://pub-9edaa7810b9a41c4ad3e323fc3af3bfa.r2.dev/loopwell-logo.png",
+      "accentColor": "#beb5ac",
+      "title": "The Space for Well-being",
+      "tags": [
+        "Web Designer",
+        "Videographer",
+        "Photographer",
+        "Editor",
+        "Digital Marketing"
+      ],
+      "featured": "https://pub-9edaa7810b9a41c4ad3e323fc3af3bfa.r2.dev/loopwell-thumb.png",
+      "summary": "While working for 3 years in-house with the team at Loopwell, I supported the brand’s visual and digital presence in a lot of hands-on ways. I designed and built their website, documented and streamed live events with video and photography, and edited content that helped support their digital marketing efforts. It was a very dynamic role, and I got to wear a lot of hats across design, production, and storytelling.",
+      "keypoints": [
+        {
+          "id": 0,
+          "featured": [
+            "https://player.vimeo.com/video/1084814449?h=6640795679"
+          ],
+          "title": "📹 Editing & Digital Content Creation",
+          "summary": "I edited the footage and photos into short-form videos, graphics, and promo material. These were used across Loopwell’s social channels and marketing—helping tell their story with content that felt true to the community they were building."
         },
         {
           "id": 1,

@@ -1,27 +1,24 @@
 import { A } from "@solidjs/router";
-import { For } from "solid-js";
-import { ProjectData } from "./ProjectPage";
+import { For, onCleanup, onMount } from "solid-js";
+import { ProjectData } from "~/types/data";
 
 interface ProjectGridProps {
   data: ProjectData[];
 }
 
-interface ImageGridCellProps {
-  colspan?: number;
+interface ProjectCellProps {
   project: ProjectData;
+  colspan?: number;
 }
 
-function ImageGridCell(props: ImageGridCellProps) {
+function ProjectCell(props: ProjectCellProps) {
   let { colspan, project } = props;
   let { featured, accentColor, clientLogo, id, title } = project;
 
-  //let emblemStyle = `background-color: ${accentColor}`;
-  let containerStyle = `grid-column: span ${colspan} / span ${colspan}`;
-
   return (
     <div
-      class="hover:z-100 rounded-2xl overflow-hidden cursor-pointer md:hover:scale-110 hover:-translate-y-4 md:hover:-translate-y-12 shadow-xl brightness-90 hover:brightness-110 shadow-transparent hover:shadow-neutral-700 transition-all duration-3000 ease-out"
-      style={containerStyle}
+      style={`grid-column: span ${colspan} / span ${colspan}`}
+      class="hover:z-100 overflow-hidden cursor-pointer max-h-[324px] md:hover:scale-110 hover:-translate-y-4 md:hover:-translate-y-12 shadow-xl brightness-90 hover:brightness-110 shadow-transparent hover:shadow-neutral-700 transition-all duration-3000 ease-out"
       onMouseEnter={() => {
         document.getElementById(`client-tag-${id}`)!.style.opacity = "100";
         document.getElementById(`client-emblem-${id}`)!.style.backgroundColor =
@@ -40,7 +37,10 @@ function ImageGridCell(props: ImageGridCellProps) {
             id={`client-emblem-${id}`}
             class="backdrop-blur backdrop-brightness-90 rounded-lg max-w-[60px] ring ring-[rgb(0,0,0,0.1)] max-h-[60px] h-full w-full flex justify-center items-center transition-all duration-3000 ease-out"
           >
-            <img class="p-4 max-h-[60px] max-w-[84px]" src={clientLogo} />
+            <img
+              class="brightness-500 saturate-0 contrast-500 p-4 max-h-[60px] max-w-[84px]"
+              src={clientLogo}
+            />
           </div>
           <div
             id={`client-tag-${id}`}
@@ -61,24 +61,17 @@ function ImageGridCell(props: ImageGridCellProps) {
 
 export default function ProjectGrid(props: ProjectGridProps) {
   let { data } = props;
+  let grid = [0, 3, 6, 9, 12];
+
   return (
     <div class="max-w-7xl my-12 mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 justify-center items-center w-full">
       <For each={data}>
-        {(project, index) => {
-          if (index() === 0) {
-            return (
-              <>
-                <ImageGridCell colspan={2} project={project} />
-              </>
-            );
-          } else {
-            return (
-              <>
-                {" "}
-                <ImageGridCell project={project} />
-              </>
-            );
+        {(project) => {
+          let colspan;
+          if (grid.includes(project.id)) {
+            colspan = 2;
           }
+          return <ProjectCell colspan={colspan} project={project} />;
         }}
       </For>
     </div>
