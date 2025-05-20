@@ -1,8 +1,8 @@
 export type ProjectData = {
   id: number;
   client: string;
-  clientLogo: string;
-  accentColor: string;
+  client_logo: string;
+  accent_color: string;
   title: string;
   tags: string[];
   featured: string;

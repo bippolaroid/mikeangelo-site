@@ -61,7 +61,9 @@ function ProjectCell(props: ProjectCellProps) {
 
 export default function ProjectGrid(props: ProjectGridProps) {
   let { data } = props;
-  let grid = [0, 3, 6, 9, 12];
+
+  // refactor to algorithm based on length of projects
+  let grid = [0, 3, 4, 7, 8, 11, 12];
 
   return (
     <div class="max-w-7xl my-12 mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1 justify-center items-center w-full">
