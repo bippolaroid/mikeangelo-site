@@ -1,10 +1,9 @@
 import { createSignal, For, Show } from "solid-js";
-import * as data from "~/data/projects.json";
+import projects from "~/data/projects.json";
 import { ProjectData } from "~/types/data";
 
 const FOLIO_SERVER_ADDR = import.meta.env.VITE_SERVER_ADDR;
 
-const { projects } = data;
 let mutableData: ProjectData[] = projects;
 
 function sendDataToServer(index: number) {
@@ -37,8 +36,8 @@ export default function DashboardPage() {
       </div>
 
       <For each={mutableData}>
-        {(project: ProjectData) => {
-          const [editEnabled, setEditEnabled] = createSignal<boolean>(true);
+        {(project: ProjectData, projectIndex) => {
+          const [editEnabled, setEditEnabled] = createSignal<boolean>(false);
           let { client_logo, title, id } = project;
 
           return (
@@ -65,20 +64,50 @@ export default function DashboardPage() {
                   <For each={Object.keys(project) as Array<keyof ProjectData>}>
                     {(key) => {
                       if (key !== "keypoints") {
-                        let value = project[key] as string;
-                        return (
-                          <div class="grid grid-cols-12 gap-3 w-full items-center">
-                            <label class="lg:col-span-2 text-neutral-500 text-sm capitalize">
-                              {key}
-                            </label>
-                            <input
-                              id={`${key}-${id}`}
-                              class="rounded col-span-10 col-start-3 px-3 py-1 bg-white w-full"
-                              type="text"
-                              value={value}
-                            />
-                          </div>
-                        );
+                        if (key === "id" || key === "tags") {
+                          let value = project[key] as number;
+                          return (
+                            <div class="grid grid-cols-12 gap-3 w-full items-center">
+                              <label class="lg:col-span-2 text-neutral-500 text-sm capitalize">
+                                {key}
+                              </label>
+                              <input
+                                id={`${key}-${id}`}
+                                class="rounded col-span-10 col-start-3 px-3 py-1 w-full"
+                                type="text"
+                                disabled
+                                value={value}
+                                onChange={(event) => {
+                                  const { value } =
+                                    event.target as HTMLInputElement;
+                                  mutableData[projectIndex()][key] =
+                                    value as never;
+                                }}
+                              />
+                            </div>
+                          );
+                        } else {
+                          let value = project[key] as string;
+                          return (
+                            <div class="grid grid-cols-12 gap-3 w-full items-center">
+                              <label class="lg:col-span-2 text-neutral-500 text-sm capitalize">
+                                {key}
+                              </label>
+                              <input
+                                id={`${key}-${id}`}
+                                class="rounded col-span-10 col-start-3 px-3 py-1 bg-white w-full"
+                                type="text"
+                                value={value}
+                                onChange={(event) => {
+                                  const { value } =
+                                    event.target as HTMLInputElement;
+                                  mutableData[projectIndex()][key] =
+                                    value as string;
+                                }}
+                              />
+                            </div>
+                          );
+                        }
                       }
                     }}
                   </For>

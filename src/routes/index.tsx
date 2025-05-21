@@ -1,8 +1,10 @@
 import { A } from "@solidjs/router";
-import * as DB from "~/data/projects.json";
+import projects from "~/data/projects.json";
 import ProjectGrid from "~/components/ProjectGrid";
 
+
 export default function Home() {
+
   return (
     <main class="p-3 mx-auto">
       <div class=" lg:pb-10 border-b border-neutral-300 bg-gradient-to-t from-neutral-100 to-neutral-50 py-12 flex items-center">
@@ -19,14 +21,9 @@ export default function Home() {
             </h1>
             <h3 class="text-xl lg:text-3xl">
               I'm an{" "}
-              <span class="font-bold text-neutral-950">
-                Art Director
-              </span>{" "}
-              and{" "}
-              <span class="font-bold text-neutral-950">
-                web developer
-              </span>{" "}
-              in New Jersey.
+              <span class="font-bold text-neutral-950">Art Director</span> and{" "}
+              <span class="font-bold text-neutral-950">web developer</span> in
+              New Jersey.
             </h3>
 
             <p class="text-lg max-w-3xl xl:max-w-[100vw] mb-3 mt-3 text-center lg:text-left">
@@ -44,7 +41,7 @@ export default function Home() {
         </div>
       </div>
       <div class="mt-3">
-        <ProjectGrid data={DB.projects} />
+        <ProjectGrid data={projects} />
       </div>
     </main>
   );

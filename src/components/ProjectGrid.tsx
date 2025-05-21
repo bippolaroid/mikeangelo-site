@@ -13,7 +13,7 @@ interface ProjectCellProps {
 
 function ProjectCell(props: ProjectCellProps) {
   let { colspan, project } = props;
-  let { featured, accentColor, clientLogo, id, title } = project;
+  let { featured, accent_color, client_logo, id, title } = project;
 
   return (
     <div
@@ -22,7 +22,7 @@ function ProjectCell(props: ProjectCellProps) {
       onMouseEnter={() => {
         document.getElementById(`client-tag-${id}`)!.style.opacity = "100";
         document.getElementById(`client-emblem-${id}`)!.style.backgroundColor =
-          accentColor;
+          accent_color;
       }}
       onMouseLeave={() => {
         document.getElementById(`client-tag-${id}`)!.style.opacity = "0";
@@ -39,7 +39,7 @@ function ProjectCell(props: ProjectCellProps) {
           >
             <img
               class="brightness-500 saturate-0 contrast-500 p-4 max-h-[60px] max-w-[84px]"
-              src={clientLogo}
+              src={client_logo}
             />
           </div>
           <div
