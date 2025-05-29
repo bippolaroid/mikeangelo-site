@@ -1,13 +1,13 @@
 import { A } from "@solidjs/router";
 import { For, onCleanup, onMount } from "solid-js";
-import { ProjectData } from "~/types/data";
+import { Project } from "~/types/data";
 
 interface ProjectGridProps {
-  data: ProjectData[];
+  data: Project[];
 }
 
 interface ProjectCellProps {
-  project: ProjectData;
+  project: Project;
   colspan?: number;
 }
 
@@ -71,7 +71,6 @@ export default function ProjectGrid(props: ProjectGridProps) {
         {(project) => {
           let colspan;
           if (grid.includes(project.id)) {
-            
             colspan = 2;
           } else {
             colspan = 1;

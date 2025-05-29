@@ -1,0 +1,22 @@
+{
+  "localUrl": {
+    "name": "Local URL",
+    "value": "127.0.0.1"
+  },
+  "localPort": {
+    "name": "Local Port",
+    "value": "1234"
+  },
+  "localEndpoint": {
+    "name": "Local Endpoint or Path",
+    "value": "v1/projects"
+  },
+  "remoteUrl": {
+    "name": "Remote URL",
+    "value": "cdn.mikeangelo.art"
+  },
+  "remoteEndpoint": {
+    "name": "Remote Endpoint or Path",
+    "value": "projects.json"
+  }
+}

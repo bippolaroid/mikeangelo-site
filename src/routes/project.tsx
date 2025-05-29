@@ -1,84 +1,95 @@
 import { renderMedia } from "../components//utils";
-import projects from "../data/projects.json";
 import { useSearchParams } from "@solidjs/router";
-import { For } from "solid-js";
+import { createEffect, createResource, For, onMount, Show } from "solid-js";
+import { Project } from "~/types/data";
+import { getData } from "~/utils/data_utils";
 
 export default function ProjectPage() {
+  const [projects, loadProjects] = createResource<Project[]>(getData);
   const [searchParams, setSearchParams] = useSearchParams();
-  if (!searchParams.id || !Number(searchParams.id)) {
-    setSearchParams({ id: 0 });
-  }
-  const {
-    id,
-    client,
-    accent_color,
-    title,
-    tags,
-    featured,
-    summary,
-    keypoints,
-    client_logo,
-  } = projects[Number(searchParams.id)];
 
   return (
-    <main class="max-w-7xl p-3 xl:p-0 mx-auto">
-      <div class="grid gap-3 py-12">
-        <div
-          class="flex gap-3 items-center justify-between rounded px-3 py-3"
-          style={`background-color: ${accent_color};`}
-        >
-          <img
-            class=" max-h-[24px] md:max-h-[36px] max-w-[72px] md:max-w-[96px]"
-            src={client_logo}
-          />
-          <h3 class="text-sm md:text-xl uppercase tracking-widest text-neutral-50">
-            {client}
-          </h3>
-        </div>
-        <div class="mt-6">
-          <h2 class="text-3xl lg:text-5xl font-bold">{title}</h2>
-        </div>
-        <div class="flex gap-1">
-          <For each={tags}>
-            {(tag) => {
-              return (
-                <div class="w-fit px-2 py-0.5 text-xs text-neutral-100 bg-neutral-300 rounded">
-                  {tag}
-                </div>
-              );
-            }}
-          </For>
-        </div>
-      </div>
-      <div class="lg:flex">
-        <div class="w-full mb-3 lg:mb-0">{renderMedia(featured)}</div>
-        <div class="w-full">
-          <div class="p-3 lg:ml-3 ring ring-neutral-200 rounded-lg">
-            <p>{summary}</p>
-          </div>
-        </div>
-      </div>
-      <div class="grid gap-12 bg-neutral-100 border-t border-neutral-300 py-12">
-        <For each={keypoints}>
-          {(keypoint) => {
-            return (
-              <div class="mx-auto">
-                <div class="grid gap-1 lg:flex justify-center items-center">
-                  <h2 class="text-3xl pb-3 text-neutral-300">
-                    {keypoint.title}
-                  </h2>
-                  <p class="lg:p-3 mx-auto lg:ring ring-neutral-300 pb-3">
-                    {keypoint.summary}
-                  </p>
-                  <div class="mx-auto w-full">
-                    {renderMedia(keypoint.featured[0])}
-                  </div>
+    <Show when={projects()}>
+      {(projects) => {
+        if (!searchParams.id || !Number(searchParams.id)) {
+          setSearchParams({ id: 0 });
+        }
+        if (Number(searchParams.id) > projects().length - 1) {
+          setSearchParams({ id: projects().length - 1 });
+        }
+        const {
+          id,
+          client,
+          accent_color,
+          title,
+          tags,
+          featured,
+          summary,
+          keypoints,
+          client_logo,
+        } = projects()![Number(searchParams.id)];
+        return (
+          <main class="max-w-7xl p-3 xl:p-0 mx-auto">
+            <div class="grid gap-3 py-12">
+              <div
+                class="flex gap-3 items-center justify-between rounded px-3 py-3"
+                style={`background-color: ${accent_color};`}
+              >
+                <img
+                  class=" max-h-[24px] md:max-h-[36px] max-w-[72px] md:max-w-[96px]"
+                  src={client_logo}
+                />
+                <h3 class="text-sm md:text-xl uppercase tracking-widest text-neutral-50">
+                  {client}
+                </h3>
+              </div>
+              <div class="mt-6">
+                <h2 class="text-3xl lg:text-5xl font-bold">{title}</h2>
+              </div>
+              <div class="flex gap-1">
+                <For each={tags}>
+                  {(tag) => {
+                    return (
+                      <div class="w-fit px-2 py-0.5 text-xs text-neutral-100 bg-neutral-300 rounded">
+                        {tag}
+                      </div>
+                    );
+                  }}
+                </For>
+              </div>
+            </div>
+            <div class="lg:flex">
+              <div class="w-full mb-3 lg:mb-0">{renderMedia(featured)}</div>
+              <div class="w-full">
+                <div class="p-3 lg:ml-3 ring ring-neutral-200 rounded-lg">
+                  <p>{summary}</p>
                 </div>
               </div>
-            );
-          }}
-        </For>
-      </div>
-    </main>
+            </div>
+            <div class="grid gap-12 bg-neutral-100 border-t border-neutral-300 py-12">
+              <For each={keypoints}>
+                {(keypoint) => {
+                  return (
+                    <div class="mx-auto">
+                      <div class="grid gap-1 lg:flex justify-center items-center">
+                        <h2 class="text-3xl pb-3 text-neutral-300">
+                          {keypoint.title}
+                        </h2>
+                        <p class="lg:p-3 mx-auto lg:ring ring-neutral-300 pb-3">
+                          {keypoint.summary}
+                        </p>
+                        <div class="mx-auto w-full">
+                          {renderMedia(keypoint.featured[0])}
+                        </div>
+                      </div>
+                    </div>
+                  );
+                }}
+              </For>
+            </div>
+          </main>
+        );
+      }}
+    </Show>
   );
 }
