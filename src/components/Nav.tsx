@@ -5,16 +5,13 @@ const [isMobile, setIsMobile] = createSignal<boolean>();
 export default function Nav() {
   const location = useLocation();
   const [prevScrollY, setPrevScrollY] = createSignal<number>(0);
-  const [scrollingDown, setScrollingDown] = createSignal<boolean>(false);
 
   function scrollHandler() {
     let { scrollY } = window;
     if (scrollY > prevScrollY()) {
       setPrevScrollY(scrollY);
-      setScrollingDown(true);
     } else {
       setPrevScrollY(scrollY);
-      setScrollingDown(false);
     }
   }
 
@@ -46,7 +43,7 @@ export default function Nav() {
 
   return (
     <>
-      <nav id="nav" class="z-1000 fixed w-full flex lg:py-12 bg-transparent transition-all duration-1000 border-b border-transparent">
+      <nav id="nav" class="z-1000 fixed w-full flex lg:py-12 bg-transparent transition-all duration-500 border-b border-transparent">
         <div class="flex w-full max-w-7xl mx-auto p-3 xl:p-0 justify-between items-center">
           <div class="w-full flex justify-start">
             <A

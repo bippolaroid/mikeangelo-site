@@ -1,5 +1,5 @@
 import { A } from "@solidjs/router";
-import { For, onCleanup, onMount } from "solid-js";
+import { For } from "solid-js";
 import { Project } from "~/types/data";
 
 interface ProjectGridProps {
