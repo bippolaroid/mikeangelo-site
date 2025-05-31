@@ -8,6 +8,7 @@ export class Project {
   featured: string;
   summary: string;
   keypoints: Keypoint[];
+  text_fields: TextField[]
   constructor(
     id: number,
     client: string,
@@ -28,6 +29,18 @@ export class Project {
     this.featured = featured;
     this.summary = summary;
     this.keypoints = keypoints;
+    this.text_fields = []
+  }
+}
+
+export class TextField {
+  id: number;
+  name: string;
+  value: string;
+  constructor(id: number, name: string, value: string) {
+    this.id = id;
+    this.name = name;
+    this.value = value;
   }
 }
 

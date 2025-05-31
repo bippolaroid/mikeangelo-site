@@ -5,30 +5,29 @@ import {
   For,
   Show,
 } from "solid-js";
-import { Project, ProjectFactory } from "~/types/data";
-import { getData, sendDataToServer } from "~/utils/data_utils";
+import { Keypoint, Project, ProjectFactory } from "~/types/data";
+import { getData, sendDataToServer, deleteData } from "~/utils/data_utils";
 
 export default function DashboardPage() {
   const [collections, loadCollections] = createResource<Project[]>(getData);
 
   createEffect(() => {});
   return (
-    <Show when={collections()}>
-      <main class="lg:grid lg:grid-cols-2 max-w-7xl mx-auto gap-6 p-3 xl:p-0 py-12 xl:pb-12">
-        <div class="mx-auto grid gap-3 text-center mb-12 col-span-2">
-          <div class="text-5xl text-neutral-300">
-            Creator Dashboard
-          </div>
-          <div class="mx-auto min-w-24 w-fit p-1 rounded-full text-xs ring ring-green-500 bg-green-200 text-green-500">Up to date</div>
+    <main class="lg:grid lg:grid-cols-2 max-w-7xl mx-auto gap-6 p-3 xl:p-0 py-12 xl:pb-12">
+      <div class="mx-auto grid gap-3 text-center mb-12 col-span-2">
+        <div class="text-5xl text-neutral-300">Creator Dashboard</div>
+        <div class="mx-auto min-w-24 w-fit p-1 rounded-full text-xs ring ring-green-500 bg-green-200 text-green-500">
+          Up to date
         </div>
-
+      </div>
+      <Show when={collections()}>
         <For each={collections()}>
           {(project: Project, projectIndex) => {
             let { client_logo, title, id } = project;
 
             return (
               <div class="grid gap-3 border border-neutral-200 py-3 px-5 rounded mt-3">
-                <div class="flex items-center">
+                <div class="items-center">
                   <div class="w-full grid py-3">
                     <label
                       id={`${id}-title-label`}
@@ -41,6 +40,10 @@ export default function DashboardPage() {
                       id={`${id}-title`}
                       value={`${title}`}
                       class="w-full text-2xl text-neutral-700 hover:text-neutral-500 focus:text-neutral-500 focus:outline-0"
+                      onChange={(event) => {
+                        const { value } = event.target as HTMLInputElement;
+                        collections()![id].title = value as string;
+                      }}
                       onMouseOver={(event) => {
                         let field = event.target;
                         if (document.activeElement !== field) {
@@ -79,41 +82,54 @@ export default function DashboardPage() {
                 <For each={Object.keys(project) as Array<keyof Project>}>
                   {(key) => {
                     //switch
-                    if (key !== "keypoints") {
-                      if (key === "id" || key === "tags") {
-                        let value = project[key] as number;
+                    switch (key) {
+                      case "id":
+                        let id = project[key];
                         return (
-                          <div class="grid grid-cols-12 gap-3 w-full items-center">
-                            <label class="lg:col-span-2 text-neutral-500 text-sm">
-                              {key}
+                          <div>
+                            <label
+                              id={`${key}-${project.id}-label`}
+                              class="text-neutral-300 text-xs uppercase"
+                            >
+                              UUID
                             </label>
-                            <input
-                              id={`${key}-${id}`}
-                              class="rounded col-span-10 col-start-3 px-3 py-1 w-full"
-                              type="text"
-                              disabled
-                              value={value}
-                              onChange={(event) => {
-                                const { value } =
-                                  event.target as HTMLInputElement;
-                                collections()![projectIndex()][key] =
-                                  value as never;
-                              }}
-                            />
+                            <p>{id}</p>
                           </div>
                         );
-                      } else {
+                      case "tags":
+                        break;
+                      case "text_fields":
+                        break;
+                      case "keypoints":
+                        let keypoints: Keypoint[] = project[key];
+                        return (
+                          <div>
+                            <label
+                              id={`${key}-${project.id}-label`}
+                              class="text-neutral-300 text-xs uppercase"
+                            >
+                              Portfolio Key Point
+                            </label>
+                            <For each={keypoints}>
+                              {(point) => {
+                                return <p>{point.title}</p>;
+                              }}
+                            </For>
+                          </div>
+                        );
+                      default:
                         let value = project[key] as string;
+
                         return (
                           <div class="grid grid-cols-1 gap-1 w-full items-center">
                             <label
-                              id={`${key}-${id}-label`}
+                              id={`${key}-${project.id}-label`}
                               class="text-neutral-300 text-xs uppercase"
                             >
                               {key}
                             </label>
                             <input
-                              id={`${key}-${id}`}
+                              id={`${key}-${project.id}`}
                               class="px-3 py-1 text-neutral-500 hover:text-neutral-700 focus:text-neutral-700 rounded ring ring-neutral-200 hover:ring-neutral-300 focus:outline-0 focus:ring-neutral-500 bg-white w-full"
                               type="text"
                               value={value}
@@ -142,11 +158,10 @@ export default function DashboardPage() {
                             />
                           </div>
                         );
-                      }
                     }
                   }}
                 </For>
-                  <div class="w-full justify-between py-3 flex gap-3">
+                <div class="w-full justify-between py-3 flex gap-3">
                   <button
                     class="w-fit cursor-pointer bg-neutral-950 hover:bg-neutral-700 rounded text-white px-3 py-1"
                     onClick={() => {
@@ -158,12 +173,13 @@ export default function DashboardPage() {
                   <button
                     class="w-fit cursor-pointer bg-red-500 hover:bg-red-400 rounded text-white px-3 py-1"
                     onClick={() => {
-                      sendDataToServer(collections()!, project.id);
+                      console.log(collections());
+                      deleteData(collections()!, project.id);
                     }}
                   >
                     Delete
                   </button>
-                  </div>
+                </div>
               </div>
             );
           }}
@@ -182,7 +198,7 @@ export default function DashboardPage() {
             Add Project
           </button>
         </div>
-      </main>
-    </Show>
+      </Show>
+    </main>
   );
 }
