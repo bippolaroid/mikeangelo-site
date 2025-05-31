@@ -1,21 +1,41 @@
 import { renderMedia } from "../components//utils";
 import { useSearchParams } from "@solidjs/router";
-import { createEffect, createResource, For, onMount, Show } from "solid-js";
+import {
+  createEffect,
+  createResource,
+  createSignal,
+  For,
+  onMount,
+  Show,
+} from "solid-js";
 import { Project } from "~/types/data";
 import { getData } from "~/utils/data_utils";
 
-export default function ProjectPage() {
+interface ProjectPageProps {
+  project?: number;
+  editing?: boolean;
+}
+
+export default function ProjectPage(props: ProjectPageProps) {
   const [projects, loadProjects] = createResource<Project[]>(getData);
+  const [project, setProject] = createSignal<Project>();
   const [searchParams, setSearchParams] = useSearchParams();
+  const { project: project_param, editing: editing_param } = props;
 
   return (
     <Show when={projects()}>
       {(projects) => {
-        if (!searchParams.id || !Number(searchParams.id)) {
-          setSearchParams({ id: 0 });
-        }
-        if (Number(searchParams.id) > projects().length - 1) {
-          setSearchParams({ id: projects().length - 1 });
+        if (editing_param && project_param) {
+          setProject(projects()[project_param]);
+        } else {
+          if (!searchParams.id || !Number(searchParams.id)) {
+            setSearchParams({ id: 0 });
+            setProject(projects()[Number(searchParams.id)]);
+          }
+          if (Number(searchParams.id) > projects().length - 1) {
+            setSearchParams({ id: projects().length - 1 });
+            setProject(projects()[Number(searchParams.id)]);
+          }
         }
         const {
           id,
@@ -27,7 +47,7 @@ export default function ProjectPage() {
           summary,
           keypoints,
           client_logo,
-        } = projects()![Number(searchParams.id)];
+        } = project()!;
         return (
           <main class="max-w-7xl p-3 xl:p-0 mx-auto">
             <div class="grid gap-3 py-12">
