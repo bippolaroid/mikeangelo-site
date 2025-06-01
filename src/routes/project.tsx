@@ -1,13 +1,6 @@
-import { renderMedia } from "../components//utils";
+import { renderMedia } from "../components/utils";
 import { useSearchParams } from "@solidjs/router";
-import {
-  createEffect,
-  createResource,
-  createSignal,
-  For,
-  onMount,
-  Show,
-} from "solid-js";
+import { createResource, createSignal, For, Show } from "solid-js";
 import { Project } from "~/types/data";
 import { getData } from "~/utils/data_utils";
 

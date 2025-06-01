@@ -1,4 +1,4 @@
-import { useSearchParams } from "@solidjs/router";
+import { reload, useSearchParams } from "@solidjs/router";
 import ProjectPage from "./project";
 import { Project } from "~/types/data";
 import {
@@ -18,6 +18,7 @@ export default function EditPage() {
     Number(searchParams.id)
   );
   const [project, setProject] = createSignal<Project>();
+  const [refreshSignal, setRefreshSignal] = createSignal<boolean>(false);
 
   createEffect(() => {
     if (collections()) {
@@ -29,10 +30,18 @@ export default function EditPage() {
     <main class="w-full lg:flex gap-1 px-3 pb-10">
       <Show when={project()}>
         <div class="w-full pt-9 p-3 lg:max-w-xl">
-          <ProjectEditor project={project() as Project} />
+          <ProjectEditor
+            project={project() as Project}
+            refreshSignal={{
+              accessor: refreshSignal,
+              setter: setRefreshSignal,
+            }}
+          />
         </div>
         <div class="w-full">
-          <ProjectPage editing={true} project={projectIndex()} />
+          <Show when={!refreshSignal()}>
+            <ProjectPage editing={true} project={projectIndex()} />
+          </Show>
         </div>
       </Show>
     </main>

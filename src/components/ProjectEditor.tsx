@@ -1,13 +1,23 @@
-import { For } from "solid-js";
+import { Accessor, createEffect, For, ResourceActions, Setter } from "solid-js";
 import { Keypoint, Project } from "~/types/data";
-import { deleteCollection, createCollection, updateCollection } from "~/utils/data_utils";
+import { deleteCollection, updateCollection } from "~/utils/data_utils";
 
 interface ProjectEditorProps {
   project: Project;
+  refreshSignal: {
+    accessor: Accessor<boolean>;
+    setter: Setter<boolean>;
+  };
 }
 
 export default function ProjectEditor(props: ProjectEditorProps) {
-  let { project } = props;
+  let { project, refreshSignal } = props;
+  function handleRefreshSignal() {
+    refreshSignal.setter(true);
+    setTimeout(() => {
+      refreshSignal.setter(false);
+    }, 10);
+  }
   let { id, title } = project;
 
   let project_original = project;
@@ -62,10 +72,16 @@ export default function ProjectEditor(props: ProjectEditorProps) {
             let target = event.target as HTMLInputElement;
             target.setSelectionRange(0, 100, "forward");
           }}
+          onKeyDown={(event) => {
+                      if (event.key === "Enter") {
+                        (event.target as HTMLInputElement).blur();
+                      }
+                    }}
         />
       </div>
       <For each={Object.keys(project) as Array<keyof Project>}>
         {(key) => {
+          // refactor to TYPES of fields, i.e. TextField.
           switch (key) {
             case "id":
               let id = project[key];
@@ -137,6 +153,11 @@ export default function ProjectEditor(props: ProjectEditorProps) {
                       let target = event.target as HTMLInputElement;
                       target.setSelectionRange(0, 100, "forward");
                     }}
+                    onKeyDown={(event) => {
+                      if (event.key === "Enter") {
+                        (event.target as HTMLInputElement).blur();
+                      }
+                    }}
                   />
                 </div>
               );
@@ -148,6 +169,7 @@ export default function ProjectEditor(props: ProjectEditorProps) {
           class="w-fit cursor-pointer bg-neutral-950 hover:bg-neutral-700 rounded text-white px-3 py-1"
           onClick={() => {
             updateCollection(project);
+            handleRefreshSignal();
           }}
         >
           Save
