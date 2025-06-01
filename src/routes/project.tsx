@@ -17,13 +17,13 @@ interface ProjectPageProps {
 }
 
 export default function ProjectPage(props: ProjectPageProps) {
-  const [projects, loadProjects] = createResource<Project[]>(getData);
+  const [collections, loadCollections] = createResource<Project[]>(getData);
   const [project, setProject] = createSignal<Project>();
   const [searchParams, setSearchParams] = useSearchParams();
   const { project: project_param, editing: editing_param } = props;
 
   return (
-    <Show when={projects()}>
+    <Show when={collections()}>
       {(projects) => {
         if (editing_param && project_param) {
           setProject(projects()[project_param]);

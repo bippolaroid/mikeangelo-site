@@ -51,40 +51,56 @@ export async function getData(): Promise<Project[]> {
   }
 }
 
-export function deleteData(data: Project[], index: number) {
-  fetch(`http://${localUrl}:${localPort}/${localEndpoint}`, {
-    method: "DELETE",
-    body: JSON.stringify(data[index]),
-    headers: {
-      "Content-Type": "application/json; charset=UTF-8",
-    },
-  })
-    .then((response) => {
+export async function deleteCollection(collection: Project) {
+  try {
+    await fetch(`http://${localUrl}:${localPort}/${localEndpoint}`, {
+      method: "DELETE",
+      body: JSON.stringify(collection),
+      headers: {
+        "Content-Type": "application/json; charset=UTF-8",
+      },
+    }).then(async (response) => {
       if (!response.ok) {
-        throw new Error(`Server error: ${response.statusText}`);
+        console.error(`Failed to delete collection: ${response.statusText}`);
       }
-      return response;
-    })
+    });
+  } catch (error) {
+    console.error(`Failed to connect to server: ${error}`);
+  }
 }
 
-export function sendDataToServer(data: Project[], index: number) {
-  fetch(`http://${localUrl}:${localPort}/${localEndpoint}`, {
-    method: "POST",
-    body: JSON.stringify(data[index]),
-    headers: {
-      "Content-Type": "application/json; charset=UTF-8",
-    },
-  })
-    .then((response) => {
+export async function createCollection(collection: Project) {
+  try {
+    await fetch(`http://${localUrl}:${localPort}/${localEndpoint}`, {
+      method: "POST",
+      body: JSON.stringify(collection),
+      headers: {
+        "Content-Type": "application/json; charset=UTF-8",
+      },
+    }).then(async (response) => {
       if (!response.ok) {
-        throw new Error(`Server error: ${response.statusText}`);
+        console.error(`Failed to add collection: ${response.statusText}`);
       }
-      return response;
-    })
-    .then((data) => {
-      console.log("Successfully sent data:", data);
-    })
-    .catch((error) => {
-      console.error("Error sending data:", error);
     });
+  } catch (error) {
+    console.error(`Failed to connect to server: ${error}`);
+  }
+}
+
+export async function updateCollection(collection: Project) {
+  try {
+    await fetch(`http://${localUrl}:${localPort}/${localEndpoint}`, {
+      method: "PUT",
+      body: JSON.stringify(collection),
+      headers: {
+        "Content-Type": "application/json; charset=UTF-8",
+      },
+    }).then(async (response) => {
+      if (!response.ok) {
+        console.error(`Failed to update collection: ${response.statusText}`);
+      }
+    });
+  } catch (error) {
+    console.error(`Failed to connect to server: ${error}`);
+  }
 }

@@ -6,8 +6,8 @@ import {
   Show,
 } from "solid-js";
 import ProjectEditor from "~/components/ProjectEditor";
-import { Keypoint, Project, ProjectFactory } from "~/types/data";
-import { getData, sendDataToServer, deleteData } from "~/utils/data_utils";
+import { Project, ProjectFactory } from "~/types/data";
+import { createCollection, getData, updateCollection } from "~/utils/data_utils";
 
 export default function DashboardPage() {
   const [collections, loadCollections] = createResource<Project[]>(getData);
@@ -23,13 +23,11 @@ export default function DashboardPage() {
       </div>
       <Show when={collections()}>
         <For each={collections()}>
-          {(project: Project, projectIndex) => {
+          {(project: Project) => {
             return (
               <>
                 <ProjectEditor
-                  collections={collections()}
                   project={project}
-                  projectIndex={projectIndex()}
                 />
               </>
             );
@@ -42,8 +40,7 @@ export default function DashboardPage() {
             onClick={() => {
               let newProjectId = collections()!.length;
               const newProject = new ProjectFactory().default(newProjectId);
-              collections()![newProjectId] = newProject;
-              sendDataToServer(collections()!, newProjectId);
+              createCollection(newProject);
             }}
           >
             Add Project

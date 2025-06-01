@@ -3,7 +3,6 @@ import ProjectGrid from "~/components/ProjectGrid";
 import { Project } from "~/types/data";
 import { getData } from "~/utils/data_utils";
 import { createResource, Show } from "solid-js";
-import ProjectPage from "./project";
 
 export default function Home() {
   const [projects, loadProjects] = createResource<Project[]>(getData);
