@@ -15,21 +15,23 @@ let [localUrl, localPort, localEndpoint, remoteUrl, remoteEndpoint] = [
  * @returns Promise that attempts to fetch <Project> data.
  */
 export async function getLocalData(): Promise<Project[]> {
-  return await fetch(`http://${localUrl}:${localPort}/${localEndpoint}`).then(
-    async (res) => await res.json()
-  );
-}
-
-export async function getLocalDataSSL(): Promise<Project[]> {
-  return await fetch(`https://${localUrl}:${localPort}/${localEndpoint}`).then(
-    async (res) => await res.json()
-  );
+  try {
+    const res = await fetch(`http://${localUrl}:${localPort}/${localEndpoint}`);
+    return await res.json();
+  } catch (error) {
+    console.warn(error);
+    return [];
+  }
 }
 
 export async function getRemoteData(): Promise<Project[]> {
-  return await fetch(`https://${remoteUrl}/${remoteEndpoint}`).then(
-    async (res) => await res.json()
-  );
+  try {
+    const res = await fetch(`https://${remoteUrl}/${remoteEndpoint}`);
+    return await res.json();
+  } catch (error) {
+    console.warn(error);
+    return [];
+  }
 }
 
 export async function getData(): Promise<Project[]> {
@@ -102,5 +104,17 @@ export async function updateCollection(collection: Project) {
     });
   } catch (error) {
     console.error(`Failed to connect to server: ${error}`);
+  }
+}
+
+export async function serverCheck() {
+  try {
+    const res = await fetch(
+      `http://${settings.localUrl.value}:${settings.localPort.value}/v1/folio`
+    );
+    return true;
+  } catch (error) {
+    console.warn(error);
+    return false;
   }
 }

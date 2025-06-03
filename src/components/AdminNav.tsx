@@ -1,7 +1,8 @@
 import { A, useLocation } from "@solidjs/router";
 import { createEffect, createSignal, onCleanup, onMount, Show } from "solid-js";
+const [isMobile, setIsMobile] = createSignal<boolean>();
 
-export default function Nav() {
+export default function AdminNav() {
   const location = useLocation();
   const [prevScrollY, setPrevScrollY] = createSignal<number>(0);
 
@@ -19,6 +20,7 @@ export default function Nav() {
     return innerWidth > 430 ? false : true;
   }
   onMount(() => {
+    setIsMobile(checkWindowWidth());
 
     document.addEventListener("resize", checkWindowWidth);
     document.addEventListener("scroll", scrollHandler);
@@ -53,25 +55,11 @@ export default function Nav() {
           </div>
           {/*<Show when={!isMobile()}>*/}
             <div class="w-full flex gap-4 justify-end items-center">
-              <A href="./#footer">
+              <A href="">
                 <button class="bg-neutral-950 hover:bg-neutral-700 px-4 py-2 cursor-pointer rounded text-neutral-50">
-                  Contact
+                  Settings
                 </button>
               </A>
-              <div class="flex gap-4">
-                <A
-                  class="text-neutral-300 hover:text-neutral-500 underline hover:no-underline"
-                  href="https://github.com/bippolaroid"
-                >
-                  Github
-                </A>
-                <A
-                  class="text-neutral-300 hover:text-neutral-500 underline hover:no-underline"
-                  href="https://www.behance.net/mikeangelotho"
-                >
-                  Behance
-                </A>
-              </div>
             </div>
           {/*</Show>*/}
         </div>

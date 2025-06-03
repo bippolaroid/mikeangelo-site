@@ -1,3 +1,5 @@
+import { UTCNow } from "~/utils/log_utils";
+
 export class Project {
   id: number;
   client: string;
@@ -8,6 +10,7 @@ export class Project {
   featured: string;
   summary: string;
   keypoints: Keypoint[];
+  last_modified: string;
   text_fields: TextField[]
   constructor(
     id: number,
@@ -18,7 +21,8 @@ export class Project {
     tags: string[],
     featured: string,
     summary: string,
-    keypoints: Keypoint[]
+    keypoints: Keypoint[],
+    last_modified: string
   ) {
     this.id = id;
     this.client = client;
@@ -29,6 +33,7 @@ export class Project {
     this.featured = featured;
     this.summary = summary;
     this.keypoints = keypoints;
+    this.last_modified = last_modified;
     this.text_fields = []
   }
 }
@@ -59,7 +64,7 @@ export class Keypoint {
 
 export class ProjectFactory {
   default(id: number): Project {
-    return new Project(
+      return new Project(
       id,
       `Client ${id}`,
       `https://`,
@@ -68,7 +73,8 @@ export class ProjectFactory {
       [`New`],
       `https://`,
       `New Project Description ${id}`,
-      [new KeypointFactory().default(id)]
+      [new KeypointFactory().default(id)],
+      UTCNow()
     );
   }
 }

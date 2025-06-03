@@ -1,6 +1,14 @@
 import { A } from "@solidjs/router";
-import { For } from "solid-js";
+import {
+  createEffect,
+  createSignal,
+  For,
+  onCleanup,
+  onMount,
+  Show,
+} from "solid-js";
 import { Project } from "~/types/data";
+import { hit } from "./utils";
 
 interface ProjectGridProps {
   data: Project[];
@@ -60,24 +68,37 @@ function ProjectCell(props: ProjectCellProps) {
 }
 
 export default function ProjectGrid(props: ProjectGridProps) {
+  const [test, setTest] = createSignal<boolean>(false);
   let { data } = props;
 
   // refactor to algorithm based on length of projects
-  let grid = [0, 3, 4, 7, 8, 11, 12];
+  let grid: number[] = [];
+
+  onMount(() => {
+    if (window.innerWidth >= 1024) {
+      grid = [0, 5, 6, 11, 12];
+      setTest(true);
+    } else {
+      grid = [0, 3, 4, 7, 8, 11];
+      setTest(true);
+    }
+  });
 
   return (
-    <div class="max-w-7xl my-12 mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1 justify-center items-center w-full">
-      <For each={data}>
-        {(project) => {
-          let colspan;
-          if (grid.includes(project.id)) {
-            colspan = 2;
-          } else {
-            colspan = 1;
-          }
-          return <ProjectCell colspan={colspan} project={project} />;
-        }}
-      </For>
-    </div>
+    <Show when={test()}>
+      <div class="max-w-7xl my-12 mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1 justify-center items-center w-full">
+        <For each={data}>
+          {(project) => {
+            let colspan;
+            if (grid.includes(project.id)) {
+              colspan = 2;
+            } else {
+              colspan = 1;
+            }
+            return <ProjectCell colspan={colspan} project={project} />;
+          }}
+        </For>
+      </div>
+    </Show>
   );
 }

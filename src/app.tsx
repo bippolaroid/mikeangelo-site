@@ -1,20 +1,18 @@
-import { Router } from "@solidjs/router";
+import { Router, useLocation } from "@solidjs/router";
 import { FileRoutes } from "@solidjs/start/router";
-import { Suspense } from "solid-js";
+import { createSignal, Suspense } from "solid-js";
 import Nav from "~/components/Nav";
 import "./app.css";
 import Footer from "./components/Footer";
+import AdminNav from "./components/AdminNav";
+import Layout from "./routes/layout";
 
 export default function App() {
   return (
     <Router
-      root={(props) => (
-        <div class="cursor-default">
-          <Nav />
-          <Suspense>{props.children}</Suspense>
-          <Footer />
-        </div>
-      )}
+      root={(props) => {
+        return <Layout children={props.children} />;
+      }}
     >
       <FileRoutes />
     </Router>

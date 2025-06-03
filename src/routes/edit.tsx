@@ -8,28 +8,35 @@ import {
   onMount,
   Show,
 } from "solid-js";
-import { getData } from "~/utils/data_utils";
+import { getLocalData } from "~/utils/data_utils";
 import ProjectEditor from "~/components/ProjectEditor";
 
 export default function EditPage() {
   const [searchParams, setSearchParams] = useSearchParams();
-  const [collections, getCollections] = createResource<Project[]>(getData);
-  const [projectIndex, setProjectIndex] = createSignal<number>(
-    Number(searchParams.id)
-  );
+  const [collections, getCollections] = createResource<Project[]>(getLocalData);
   const [project, setProject] = createSignal<Project>();
   const [refreshSignal, setRefreshSignal] = createSignal<boolean>(false);
 
+  if (!Number(searchParams.id)) {
+    setSearchParams({ id: 0 });
+  }
+
   createEffect(() => {
-    if (collections()) {
-      setProject(collections()![projectIndex()]);
+    if (collections() as Project[]) {
+      let focus_project = collections() as Project[];
+      if (Number(searchParams.id) >= focus_project.length) {
+        setSearchParams({ id: focus_project.length - 1 });
+        setProject(focus_project[Number(searchParams.id)]);
+      } else {
+        setProject(focus_project[Number(searchParams.id)]);
+      }
     }
   });
 
   return (
-    <main class="w-full lg:flex gap-1 px-3 pb-10">
+    <main class="w-full grid justify-between h-[85vh] gap-4 xl:flex my-6">
       <Show when={project()}>
-        <div class="w-full pt-9 p-3 lg:max-w-xl">
+        <div class="w-full xl:max-w-lg xl:overflow-auto">
           <ProjectEditor
             project={project() as Project}
             refreshSignal={{
@@ -38,9 +45,9 @@ export default function EditPage() {
             }}
           />
         </div>
-        <div class="w-full">
+        <div class="w-full xl:max-h-[100vh] xl:overflow-auto">
           <Show when={!refreshSignal()}>
-            <ProjectPage editing={true} project={projectIndex()} />
+            <ProjectPage editing={true} project={project() as Project} />
           </Show>
         </div>
       </Show>

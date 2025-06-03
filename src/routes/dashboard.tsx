@@ -1,52 +1,38 @@
-import {
-  createEffect,
-  createResource,
-  createSignal,
-  For,
-  Show,
-} from "solid-js";
-import ProjectEditor from "~/components/ProjectEditor";
+import { createEffect, createResource, createSignal, Show } from "solid-js";
 import { Project, ProjectFactory } from "~/types/data";
-import { createCollection, getData, updateCollection } from "~/utils/data_utils";
+import { serverCheck } from "~/utils/data_utils";
+import Dashboard from "~/components/Dashboard";
 
 export default function DashboardPage() {
-  const [collections, loadCollections] = createResource<Project[]>(getData);
+  const [liveCheck, loadLiveCheck] = createResource<boolean>(serverCheck);
+  const [refreshSignal, setRefreshSignal] = createSignal<boolean>(false);
 
-  createEffect(() => {});
-  return (
-    <main class="lg:grid lg:grid-cols-2 max-w-7xl mx-auto gap-6 p-3 xl:p-0 py-12 xl:pb-12">
-      <div class="mx-auto grid gap-3 text-center mb-12 col-span-2">
-        <div class="text-5xl text-neutral-300">Creator Dashboard</div>
-        <div class="mx-auto min-w-24 w-fit p-1 rounded-full text-xs ring ring-green-500 bg-green-200 text-green-500">
-          Up to date
-        </div>
+  function refresh() {
+    return (
+      <div class="w-full grid gap-4 justify-center">
+        <p>folio server is not running...</p>
+        <button class="w-fit mx-auto px-4 py-2 ring ring-neutral-950 text-neutral-50 hover:text-neutral-950 rounded cursor-pointer bg-neutral-950 hover:bg-neutral-50"
+        onclick={() => {
+          setRefreshSignal(true);
+        }}>
+          Refresh
+        </button>
       </div>
-      <Show when={collections()}>
-        <For each={collections()}>
-          {(project: Project) => {
-            return (
-              <>
-                <ProjectEditor
-                  project={project}
-                />
-              </>
-            );
-          }}
-        </For>
-        <div class="lg:col-span-2 flex justify-center">
-          {" "}
-          <button
-            class="mt-3 lg:mt-0 text-xl w-fit cursor-pointer bg-neutral-950 hover:bg-neutral-300 rounded text-white px-4 py-3"
-            onClick={() => {
-              let newProjectId = collections()!.length;
-              const newProject = new ProjectFactory().default(newProjectId);
-              createCollection(newProject);
-            }}
-          >
-            Add Project
-          </button>
-        </div>
-      </Show>
-    </main>
+    );
+  }
+
+  createEffect(() => {
+    if (refreshSignal()) {
+      setTimeout(() => {
+        loadLiveCheck.refetch();
+        setRefreshSignal(false);
+      }, 1);
+    }
+  });
+
+  return (
+    <Show when={liveCheck()} fallback={refresh()}>
+      <Dashboard />
+    </Show>
   );
 }

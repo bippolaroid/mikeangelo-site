@@ -1,15 +1,15 @@
 import { A } from "@solidjs/router";
 import ProjectGrid from "~/components/ProjectGrid";
 import { Project } from "~/types/data";
-import { getData } from "~/utils/data_utils";
+import { getLocalData, getRemoteData } from "~/utils/data_utils";
 import { createResource, Show } from "solid-js";
 
 export default function Home() {
-  const [projects, loadProjects] = createResource<Project[]>(getData);
+  const [projects, loadProjects] = createResource<Project[]>(getLocalData);
 
   return (
     <Show when={projects()}>
-      <main class="p-3 mx-auto">
+      <main class="p-4 mx-auto">
         <div class=" lg:pb-10 border-b border-neutral-300 bg-gradient-to-t from-neutral-100 to-neutral-50 py-12 flex items-center">
           <div class="max-w-7xl lg:flex grid gap-3 lg:gap-6 justify-between items-center mx-auto text-center lg:text-left">
             <div class="h-full w-full mx-auto max-w-[360px] hover:scale-95 shadow-lg shadow-transparent hover:shadow-neutral-300 transition-all duration-3000 ease-out bg-gradient-to-tr from-blue-500 via-purple-500 to-yellow-500 row-start-2 max-h-[360px] overflow-hidden rounded-full">
@@ -19,7 +19,7 @@ export default function Home() {
               />
             </div>
             <div class="w-full">
-              <h1 class="text-5xl lg:text-7xl tracking-tight font-bold mb-3">
+              <h1 class="text-5xl lg:text-7xl tracking-tight font-bold mb-4">
                 Hello! I'm Mike 🤘
               </h1>
               <h3 class="text-xl lg:text-3xl">
@@ -29,7 +29,7 @@ export default function Home() {
                 New Jersey.
               </h3>
 
-              <p class="text-lg max-w-3xl xl:max-w-[100vw] mb-3 mt-3 text-center lg:text-left">
+              <p class="text-lg max-w-3xl xl:max-w-[100vw] mb-4 mt-4 text-center lg:text-left">
                 I specialize in design, editing, advertising campaigns, digital
                 marketing, and web design & development. Please{" "}
                 <A
@@ -43,7 +43,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div class="mt-3">
+        <div class="mt-4">
           <ProjectGrid data={projects()!} />
         </div>
       </main>

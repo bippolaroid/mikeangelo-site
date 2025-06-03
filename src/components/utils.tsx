@@ -28,3 +28,7 @@ export function renderMedia(media: string) {
     );
   }
 }
+
+export function hit() {
+  console.log("hit");
+}
