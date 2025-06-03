@@ -1,7 +1,8 @@
 import { createEffect, createResource, createSignal, Show } from "solid-js";
 import { Project, ProjectFactory } from "~/types/data";
-import { serverCheck } from "~/utils/data_utils";
+import { getLocalData, serverCheck } from "~/utils/data_utils";
 import Dashboard from "~/components/Dashboard";
+import ProjectGrid from "~/components/ProjectGrid";
 
 export default function DashboardPage() {
   const [liveCheck, loadLiveCheck] = createResource<boolean>(serverCheck);

@@ -1,11 +1,11 @@
 import { A } from "@solidjs/router";
 import {
   createEffect,
+  createMemo,
   createSignal,
   For,
   onCleanup,
   onMount,
-  Show,
 } from "solid-js";
 import { Project } from "~/types/data";
 import { hit } from "./utils";
@@ -38,7 +38,6 @@ function ProjectCell(props: ProjectCellProps) {
           "transparent";
       }}
     >
-      {" "}
       <A href={`/project?id=${id}`}>
         <div class="absolute flex h-full m-2 gap-2 max-h-[60px]">
           <div
@@ -68,37 +67,40 @@ function ProjectCell(props: ProjectCellProps) {
 }
 
 export default function ProjectGrid(props: ProjectGridProps) {
-  const [test, setTest] = createSignal<boolean>(false);
-  let { data } = props;
+  const [gridArray, setGridArray] = createSignal<number[]>([]);
 
-  // refactor to algorithm based on length of projects
-  let grid: number[] = [];
+  function initGrid() {
+    console.log("Resized:", window.innerWidth);
+    if (window.innerWidth >= 1024) {
+      setGridArray([0, 5, 6, 11, 12]);
+    } else {
+      setGridArray([0, 3, 4, 7, 8, 11]);
+    }
+  }
 
   onMount(() => {
-    if (window.innerWidth >= 1024) {
-      grid = [0, 5, 6, 11, 12];
-      setTest(true);
-    } else {
-      grid = [0, 3, 4, 7, 8, 11];
-      setTest(true);
-    }
+    initGrid();
+    window.addEventListener("resize", initGrid);
+    onCleanup(() => {
+      window.removeEventListener("resize", initGrid);
+    });
+  });
+
+  const computedData = createMemo(() => {
+    const array = gridArray();
+    return props.data.map((project) => ({
+      project,
+      colspan: array.includes(project.id) ? 2 : 1,
+    }));
   });
 
   return (
-    <Show when={test()}>
-      <div class="max-w-7xl my-12 mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1 justify-center items-center w-full">
-        <For each={data}>
-          {(project) => {
-            let colspan;
-            if (grid.includes(project.id)) {
-              colspan = 2;
-            } else {
-              colspan = 1;
-            }
-            return <ProjectCell colspan={colspan} project={project} />;
-          }}
-        </For>
-      </div>
-    </Show>
+    <div class="max-w-7xl my-12 mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1 justify-center items-center w-full">
+      <For each={computedData()}>
+        {({ project, colspan }) => (
+          <ProjectCell colspan={colspan} project={project} />
+        )}
+      </For>
+    </div>
   );
 }

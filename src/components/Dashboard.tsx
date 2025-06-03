@@ -13,6 +13,7 @@ import {
   getLocalData,
   getRemoteData,
 } from "~/utils/data_utils";
+import ProjectGrid from "./ProjectGrid";
 
 export default function Dashboard() {
   const [collections, loadCollections] =
@@ -49,12 +50,12 @@ export default function Dashboard() {
         )}
       </div>
       <Show when={collections()}>
-        <div class="grid grid-cols-4 col-span-2 items-center gap-4 ring ring-neutral-300 rounded p-6 w-full">
+        <div class="grid grid-cols-5 col-span-2 items-center gap-4 ring ring-neutral-300 rounded p-6 w-full">
           <For each={collections()}>
             {(project: Project) => {
               return (
                 <>
-                  <div class="flex col-span-2 items-center w-full">
+                  <div class="flex col-span-3 items-center w-full">
                     <div class="pr-4">
                       <img
                         class="saturate-0 brightness-0"
@@ -66,14 +67,14 @@ export default function Dashboard() {
                     <div>
                       <A
                         class="text-xl underline hover:no-underline"
-                        href={`/project/?id=${project.id}`}
+                        href={`/project?id=${project.id}`}
                       >
                         {project.title}
                       </A>
                     </div>
                   </div>
                   <div class="w-full">{project.last_modified}</div>
-                  <div class="w-full flex gap-4">
+                  <div class="w-full flex justify-end gap-4">
                     <A
                       class="text-xl underline hover:no-underline"
                       href={`/edit?id=${project.id}`}
@@ -109,6 +110,10 @@ export default function Dashboard() {
           >
             Add Project
           </button>
+        </div>
+        <div class="col-span-2 grid mt-12">
+          <div class="pb-4 w-full flex justify-center border-b border-neutral-300"><h1 class="text-5xl text-neutral-300">Grid Preview</h1></div>
+          <ProjectGrid data={collections() as Project[]} />
         </div>
       </Show>
     </main>
