@@ -1,31 +1,35 @@
 import { A } from "@solidjs/router";
-import { For } from "solid-js";
-import { ProjectData } from "./ProjectPage";
+import {
+  createEffect,
+  createMemo,
+  createSignal,
+  For,
+  onCleanup,
+  onMount,
+} from "solid-js";
+import { Project } from "~/types/data";
 
 interface ProjectGridProps {
-  data: ProjectData[];
+  data: Project[];
 }
 
-interface ImageGridCellProps {
+interface ProjectCellProps {
+  project: Project;
   colspan?: number;
-  project: ProjectData;
 }
 
-function ImageGridCell(props: ImageGridCellProps) {
+function ProjectCell(props: ProjectCellProps) {
   let { colspan, project } = props;
-  let { featured, accentColor, clientLogo, id, title } = project;
-
-  //let emblemStyle = `background-color: ${accentColor}`;
-  let containerStyle = `grid-column: span ${colspan} / span ${colspan}`;
+  let { featured, accent_color, client_logo, id, title } = project;
 
   return (
     <div
-      class="hover:z-100 rounded-2xl overflow-hidden cursor-pointer md:hover:scale-110 hover:-translate-y-4 md:hover:-translate-y-12 shadow-xl brightness-90 hover:brightness-110 shadow-transparent hover:shadow-neutral-700 transition-all duration-3000 ease-out"
-      style={containerStyle}
+      style={`grid-column: span ${colspan} / span ${colspan}`}
+      class="hover:z-100 overflow-hidden cursor-pointer hover:scale-110 hover:-translate-y-2 md:hover:-translate-y-6 brightness-90 hover:brightness-110 transition-all duration-2000 ease-out"
       onMouseEnter={() => {
         document.getElementById(`client-tag-${id}`)!.style.opacity = "100";
         document.getElementById(`client-emblem-${id}`)!.style.backgroundColor =
-          accentColor;
+          accent_color;
       }}
       onMouseLeave={() => {
         document.getElementById(`client-tag-${id}`)!.style.opacity = "0";
@@ -33,25 +37,26 @@ function ImageGridCell(props: ImageGridCellProps) {
           "transparent";
       }}
     >
-      {" "}
       <A href={`/project?id=${id}`}>
         <div class="absolute flex h-full m-2 gap-2 max-h-[60px]">
           <div
             id={`client-emblem-${id}`}
-            class="backdrop-blur backdrop-brightness-90 rounded-lg max-w-[60px] ring ring-[rgb(0,0,0,0.1)] max-h-[60px] h-full w-full flex justify-center items-center transition-all duration-3000 ease-out"
+            class="backdrop-blur backdrop-brightness-90 rounded-xl max-w-[60px] ring ring-[rgb(0,0,0,0.1)] max-h-[60px] h-full w-full flex justify-center items-center transition-all duration-3000 ease-out"
           >
-            <img class="p-4 max-h-[60px] max-w-[84px]" src={clientLogo} />
+            <img
+              class="brightness-500 saturate-0 contrast-500 p-4 max-h-[60px] max-w-[84px]"
+              src={client_logo}
+            />
           </div>
           <div
             id={`client-tag-${id}`}
-            class="opacity-0 uppercase text-neutral-700 tracking-widest text-sm transition-all duration-3000 ease-out backdrop-blur-xl ring ring-[rgb(0,0,0,0.1)] backdrop-brightness-125 rounded-lg p-4 h-full flex items-center"
+            class="opacity-0 uppercase text-neutral-700 tracking-widest text-sm transition-all duration-3000 ease-out backdrop-blur-xl ring ring-[rgb(0,0,0,0.1)] backdrop-brightness-125 rounded-xl p-4 h-full flex items-center"
           >
             {title}
           </div>
         </div>
-
         <img
-          class="h-100 transition-all duration-3000 ease-out w-full object-cover max-h-[288px] lg:max-h-[360px] overflow-hidden"
+          class="h-90 transition-all duration-3000 ease-out w-full object-cover"
           src={featured}
         />
       </A>
@@ -60,26 +65,38 @@ function ImageGridCell(props: ImageGridCellProps) {
 }
 
 export default function ProjectGrid(props: ProjectGridProps) {
-  let { data } = props;
+  const [gridArray, setGridArray] = createSignal<number[]>([]);
+
+  function initGrid() {
+    if (window.innerWidth >= 1024) {
+      setGridArray([0, 5, 6, 11, 12]);
+    } else {
+      setGridArray([0, 3, 4, 7, 8, 11]);
+    }
+  }
+
+  onMount(() => {
+    initGrid();
+    window.addEventListener("resize", initGrid);
+    onCleanup(() => {
+      window.removeEventListener("resize", initGrid);
+    });
+  });
+
+  const computedData = createMemo(() => {
+    const array = gridArray();
+    return props.data.map((project) => ({
+      project,
+      colspan: array.includes(project.id) ? 2 : 1,
+    }));
+  });
+
   return (
-    <div class="max-w-7xl my-12 mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 justify-center items-center w-full">
-      <For each={data}>
-        {(project, index) => {
-          if (index() === 0) {
-            return (
-              <>
-                <ImageGridCell colspan={2} project={project} />
-              </>
-            );
-          } else {
-            return (
-              <>
-                {" "}
-                <ImageGridCell project={project} />
-              </>
-            );
-          }
-        }}
+    <div class="max-w-7xl py-6 mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1 justify-center items-center w-full">
+      <For each={computedData()}>
+        {({ project, colspan }) => (
+          <ProjectCell colspan={colspan} project={project} />
+        )}
       </For>
     </div>
   );

@@ -1,3 +1,4 @@
+import { A } from "@solidjs/router";
 import { createEffect, createSignal, Show } from "solid-js";
 
 export default function Footer() {
@@ -10,7 +11,9 @@ export default function Footer() {
 
   function copiedMessage() {
     return (
-      <div class="text-center w-full ring ring-neutral-500 text-neutral-500 rounded-full px-4 py-2">Copied to clipboard!</div>
+      <div class="w-full text-neutral-500">
+        Copied to clipboard!
+      </div>
     );
   }
   async function copyToClipboard(content: string) {
@@ -24,25 +27,44 @@ export default function Footer() {
   }
 
   return (
-    <footer
-      id="footer"
-      class="w-full bg-neutral-950"
-    >
-      <div class="max-w-7xl mx-auto flex gap-3 items-center justify-between px-3 2xl:px-0 py-24">
-      <div></div>
-      <div class="text-right grid gap-3">
-        <div class="text-neutral-300 text-5xl">Let's build something cool!</div>
-        <div class="flex justify-end w-full">
-          <Show when={!isCopied()} fallback={copiedMessage()}>
-            <div
-              class="text-neutral-300 text-3xl font-bold hover:text-neutral-500 cursor-pointer"
-              onClick={() => copyToClipboard("m.angelo@177edgar.com")}
-            >
-              📧 <span class="underline">m.angelo@177edgar.com</span>
-            </div>
-          </Show>
+    <footer id="footer" class="w-full bg-neutral-900">
+      <div class="max-w-7xl mx-auto flex gap-2 items-start justify-between px-4 2xl:px-0 py-12">
+        <div class="grid gap-2">
+          <div class="text-neutral-100 text-xl font-bold">
+            Let's build something together!
+          </div>
+          <div class="flex w-full">
+            <Show when={!isCopied()} fallback={copiedMessage()}>
+              <div
+                class="text-neutral-100 hover:text-neutral-500 cursor-pointer"
+                onClick={() => copyToClipboard("m.angelo@177edgar.com")}
+              >
+                📧 <span class="underline">m.angelo@177edgar.com</span>
+              </div>
+            </Show>
+            
+          </div>
         </div>
-      </div>
+        <div class="grid text-right">
+          <A
+            class="text-neutral-700 hover:text-neutral-500 hover:underline"
+            href="https://www.behance.net/mikeangelotho"
+          >
+            Behance
+          </A>
+          <A
+            class="text-neutral-700 hover:text-neutral-500 hover:underline"
+            href="https://github.com/bippolaroid"
+          >
+            Github
+          </A>
+          <A
+            class="text-neutral-700 hover:text-neutral-500 hover:underline"
+            href="./dashboard"
+          >
+            Dashboard
+          </A>
+        </div>
       </div>
     </footer>
   );

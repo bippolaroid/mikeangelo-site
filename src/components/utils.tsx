@@ -21,10 +21,14 @@ export function renderMedia(media: string) {
   } else {
     return (
       <>
-        <div class="w-full mx-auto rounded overflow-hidden shadow shadow-neutral-400 ring ring-neutral-300">
+        <div class="w-full mx-auto rounded overflow-hidden shadow">
           <img src={`${media}`} class="mx-auto w-full h-full" />
         </div>
       </>
     );
   }
+}
+
+export function hit() {
+  console.log("hit");
 }
