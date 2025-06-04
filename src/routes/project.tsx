@@ -7,6 +7,7 @@ import {
   For,
   Show,
 } from "solid-js";
+import Loading from "~/components/Loading";
 import { Project } from "~/types/data";
 import { getData, getLocalData, getRemoteData } from "~/utils/data_utils";
 
@@ -45,11 +46,11 @@ export default function ProjectPage(props: ProjectPageProps) {
   });
 
   return (
-    <Show when={project()}>
-      <main class={`w-full my-4 mx-auto ${!editing_param ? "max-w-7xl" : ""}`}>
+    <Show when={project()} fallback={<Loading />}>
+      <main class={`w-full my-4 px-4 bg-neutral-900 mx-auto ${!editing_param ? "max-w-7xl 2xl:px-0" : "py-4 rounded-lg"}`}>
         <div class="grid gap-4 pb-12">
           <div
-            class="flex gap-3 items-center justify-between rounded px-6 py-4"
+            class="flex gap-2 items-center justify-between rounded-lg px-6 py-4"
             style={`background-color: ${project()!.accent_color};`}
           >
             <img
@@ -61,13 +62,13 @@ export default function ProjectPage(props: ProjectPageProps) {
             </h3>
           </div>
           <div class="mt-6">
-            <h2 class="text-3xl lg:text-5xl font-bold">{project()!.title}</h2>
+            <h2 class="text-3xl lg:text-5xl text-neutral-50 font-bold">{project()!.title}</h2>
           </div>
           <div class="flex gap-2">
             <For each={project()!.tags}>
               {(tag) => {
                 return (
-                  <div class="w-fit px-2 py-0.5 text-xs text-neutral-100 bg-neutral-300 rounded">
+                  <div class="w-fit px-2 py-1 text-xs text-amber-500 bg-amber-950 rounded-lg">
                     {tag}
                   </div>
                 );
@@ -80,22 +81,22 @@ export default function ProjectPage(props: ProjectPageProps) {
             {renderMedia(project()!.featured)}
           </div>
           <div class="w-full">
-            <div class="p-4 lg:ml-4 ring ring-neutral-200 rounded-lg">
+            <div class="p-4 lg:ml-4 text-neutral-50 ring ring-neutral-500 rounded-lg">
               <p>{project()!.summary}</p>
             </div>
           </div>
         </div>
-        <div class="grid gap-12 mt-4 bg-neutral-100 border-t border-b border-neutral-300 py-12">
+        <div class={`grid gap-12 mt-4 text-neutral-50 shadow-lg shadow-neutral-950 bg-gradient-to-tl from-neutral-950 to-neutral-800 border-t border-b border-neutral-500 py-12`}>
           <For each={project()!.keypoints}>
             {(keypoint) => {
               return (
                 <div class="mx-auto px-4 max-w-5xl">
                   <div class="grid gap-12 justify-center items-center">
                     <div class="">
-                      <h2 class="text-3xl pb-4 text-neutral-700">
+                      <h2 class="text-3xl pb-4 text-neutral-50">
                         {keypoint.title}
                       </h2>
-                      <p class="lg:p-4 mx-auto lg:ring ring-neutral-200">
+                      <p class="lg:p-4 mx-auto lg:ring rounded-lg ring-neutral-700">
                         {keypoint.summary}
                       </p>
                     </div>

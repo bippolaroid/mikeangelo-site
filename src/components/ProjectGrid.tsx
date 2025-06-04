@@ -8,7 +8,6 @@ import {
   onMount,
 } from "solid-js";
 import { Project } from "~/types/data";
-import { hit } from "./utils";
 
 interface ProjectGridProps {
   data: Project[];
@@ -26,7 +25,7 @@ function ProjectCell(props: ProjectCellProps) {
   return (
     <div
       style={`grid-column: span ${colspan} / span ${colspan}`}
-      class="hover:z-100 overflow-hidden cursor-pointer max-h-[324px] hover:scale-110 hover:-translate-y-4 md:hover:-translate-y-12 shadow-xl brightness-90 hover:brightness-110 shadow-transparent hover:shadow-neutral-700 transition-all duration-3000 ease-out"
+      class="hover:z-100 overflow-hidden cursor-pointer max-h-[324px] hover:scale-110 hover:-translate-y-2 md:hover:-translate-y-6 brightness-90 hover:brightness-110 transition-all duration-2000 ease-out"
       onMouseEnter={() => {
         document.getElementById(`client-tag-${id}`)!.style.opacity = "100";
         document.getElementById(`client-emblem-${id}`)!.style.backgroundColor =
@@ -56,9 +55,8 @@ function ProjectCell(props: ProjectCellProps) {
             {title}
           </div>
         </div>
-
         <img
-          class="h-90 transition-all duration-3000 ease-out w-full object-cover overflow-hidden"
+          class="h-90 transition-all duration-3000 ease-out w-full object-cover"
           src={featured}
         />
       </A>
@@ -70,7 +68,6 @@ export default function ProjectGrid(props: ProjectGridProps) {
   const [gridArray, setGridArray] = createSignal<number[]>([]);
 
   function initGrid() {
-    console.log("Resized:", window.innerWidth);
     if (window.innerWidth >= 1024) {
       setGridArray([0, 5, 6, 11, 12]);
     } else {
@@ -95,7 +92,7 @@ export default function ProjectGrid(props: ProjectGridProps) {
   });
 
   return (
-    <div class="max-w-7xl my-12 mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1 justify-center items-center w-full">
+    <div class="max-w-7xl py-6 mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1 justify-center items-center w-full">
       <For each={computedData()}>
         {({ project, colspan }) => (
           <ProjectCell colspan={colspan} project={project} />

@@ -34,7 +34,7 @@ export default function EditPage() {
   });
 
   return (
-    <main class="w-full grid justify-between h-[85vh] gap-4 xl:flex my-6">
+    <main class="w-full grid justify-between h-[87vh] gap-4 xl:flex my-6 bg-neutral-800">
       <Show when={project()}>
         <div class="w-full xl:max-w-lg xl:overflow-auto">
           <ProjectEditor

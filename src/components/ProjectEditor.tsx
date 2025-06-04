@@ -31,12 +31,12 @@ export default function ProjectEditor(props: ProjectEditorProps) {
   let project_original = project;
 
   return (
-    <div class="grid gap-4 border bg-neutral-50 border-neutral-200 py-4 px-6 rounded w-full shadow-md">
+    <div class="grid gap-4 py-4 px-6 rounded w-full border-r border-t border-b border-neutral-800">
       <div class="w-full flex justify-between py-3">
         <div class="w-[75%]">
           <label
             id={`${id}-title-label`}
-            class="text-neutral-300 text-xs uppercase"
+            class="text-neutral-700 text-xs uppercase"
           >
             Collection Name
           </label>
@@ -44,7 +44,7 @@ export default function ProjectEditor(props: ProjectEditorProps) {
             type="text"
             id={`${id}-title`}
             value={`${title}`}
-            class="w-full text-2xl text-neutral-700 hover:text-neutral-500 focus:text-neutral-500 focus:outline-0"
+            class="w-full text-2xl text-neutral-300 hover:text-neutral-50 focus:text-neutral-500 focus:outline-0"
             onChange={(event) => {
               const { value } = event.target as HTMLInputElement;
               project.title = value as string;
@@ -69,13 +69,13 @@ export default function ProjectEditor(props: ProjectEditorProps) {
               let label = document.getElementById(
                 `${event.target.id}-label`
               ) as HTMLLabelElement;
-              label!.style.color = "#404040";
+              label!.style.color = "#737373";
             }}
             onFocusOut={(event) => {
               let label = document.getElementById(
                 `${event.target.id}-label`
               ) as HTMLLabelElement;
-              label!.style.color = "#d4d4d4";
+              label!.style.color = "#404040";
             }}
             onFocus={(event) => {
               let target = event.target as HTMLInputElement;
@@ -90,7 +90,7 @@ export default function ProjectEditor(props: ProjectEditorProps) {
         </div>
         <div class="w-[25% flex justify-end]">
           <span
-            class="text-xs underline hover:no-underline cursor-pointer"
+            class="text-xs text-neutral-500 underline hover:text-neutral-300 cursor-pointer"
             onclick={() => {
               setExpanded(!expanded());
             }}
@@ -105,18 +105,7 @@ export default function ProjectEditor(props: ProjectEditorProps) {
             // refactor to TYPES of fields, i.e. TextField.
             switch (key) {
               case "id":
-                let id = project[key];
-                return (
-                  <div>
-                    <label
-                      id={`${key}-${project.id}-label`}
-                      class="text-neutral-300 text-xs uppercase"
-                    >
-                      UUID
-                    </label>
-                    <p>{id}</p>
-                  </div>
-                );
+                break;
               case "title":
                 break;
               case "tags":
@@ -147,13 +136,13 @@ export default function ProjectEditor(props: ProjectEditorProps) {
                   <div class="grid grid-cols-1 gap-2 w-full items-center">
                     <label
                       id={`${key}-${project.id}-label`}
-                      class="text-neutral-300 text-xs uppercase"
+                      class="text-neutral-700 text-xs uppercase"
                     >
                       {key}
                     </label>
                     <input
                       id={`${key}-${project.id}`}
-                      class="px-4 py-2 text-neutral-500 hover:text-neutral-700 focus:text-neutral-700 rounded ring ring-neutral-200 hover:ring-neutral-300 focus:outline-0 focus:ring-neutral-500 bg-white w-full"
+                      class="px-4 py-2 text-neutral-500 hover:text-neutral-300 focus:text-neutral-700 rounded ring ring-neutral-700 hover:ring-neutral-500 focus:outline-0 focus:ring-neutral-500 bg-neutral-800 w-full"
                       type="text"
                       value={value}
                       onChange={(event) => {
@@ -164,13 +153,13 @@ export default function ProjectEditor(props: ProjectEditorProps) {
                         let label = document.getElementById(
                           `${event.target.id}-label`
                         ) as HTMLLabelElement;
-                        label!.style.color = "#404040";
+                        label!.style.color = "#737373";
                       }}
                       onFocusOut={(event) => {
                         let label = document.getElementById(
                           `${event.target.id}-label`
                         ) as HTMLLabelElement;
-                        label!.style.color = "#d4d4d4";
+                        label!.style.color = "#404040";
                       }}
                       onFocus={(event) => {
                         let target = event.target as HTMLInputElement;
@@ -191,7 +180,7 @@ export default function ProjectEditor(props: ProjectEditorProps) {
       </Show>
       <div class="w-full justify-between py-4 flex gap-4">
         <button
-          class="w-fit cursor-pointer bg-neutral-950 hover:bg-neutral-700 rounded text-white px-4 py-2"
+          class="w-fit cursor-pointer bg-neutral-50 hover:bg-neutral-300 rounded text-green-950 px-4 py-2"
           onClick={() => {
             updateCollection(project);
             handleRefreshSignal();
