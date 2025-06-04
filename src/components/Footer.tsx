@@ -11,7 +11,7 @@ export default function Footer() {
 
   function copiedMessage() {
     return (
-      <div class="text-center w-full text-neutral-500">
+      <div class="w-full text-neutral-500">
         Copied to clipboard!
       </div>
     );
@@ -27,21 +27,22 @@ export default function Footer() {
   }
 
   return (
-    <footer id="footer" class="w-full bg-neutral-950">
+    <footer id="footer" class="w-full bg-neutral-900">
       <div class="max-w-7xl mx-auto flex gap-2 items-start justify-between px-4 2xl:px-0 py-12">
-        <div class="text-right grid gap-2">
-          <div class="text-neutral-100 text-3xl">
-            Let's build something cool!
+        <div class="grid gap-2">
+          <div class="text-neutral-100 text-xl font-bold">
+            Let's build something together!
           </div>
           <div class="flex w-full">
             <Show when={!isCopied()} fallback={copiedMessage()}>
               <div
-                class="text-neutral-100 text-xl font-bold hover:text-neutral-500 cursor-pointer"
+                class="text-neutral-100 hover:text-neutral-500 cursor-pointer"
                 onClick={() => copyToClipboard("m.angelo@177edgar.com")}
               >
                 📧 <span class="underline">m.angelo@177edgar.com</span>
               </div>
             </Show>
+            
           </div>
         </div>
         <div class="grid text-right">

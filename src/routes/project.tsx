@@ -47,7 +47,7 @@ export default function ProjectPage(props: ProjectPageProps) {
 
   return (
     <Show when={project()} fallback={<Loading />}>
-      <main class={`w-full my-4 px-4 bg-neutral-900 mx-auto ${!editing_param ? "max-w-7xl 2xl:px-0" : "py-4 rounded-lg"}`}>
+      <main class={`w-full py-4 px-4 bg-neutral-900 mx-auto ${editing_param ? "rounded-xl" : "max-w-7xl 2xl:px-0"}`}>
         <div class="grid gap-4 pb-12">
           <div
             class="flex gap-2 items-center justify-between rounded-lg px-6 py-4"

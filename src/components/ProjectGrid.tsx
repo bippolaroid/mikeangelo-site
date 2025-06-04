@@ -25,7 +25,7 @@ function ProjectCell(props: ProjectCellProps) {
   return (
     <div
       style={`grid-column: span ${colspan} / span ${colspan}`}
-      class="hover:z-100 overflow-hidden cursor-pointer max-h-[324px] hover:scale-110 hover:-translate-y-2 md:hover:-translate-y-6 brightness-90 hover:brightness-110 transition-all duration-2000 ease-out"
+      class="hover:z-100 overflow-hidden cursor-pointer hover:scale-110 hover:-translate-y-2 md:hover:-translate-y-6 brightness-90 hover:brightness-110 transition-all duration-2000 ease-out"
       onMouseEnter={() => {
         document.getElementById(`client-tag-${id}`)!.style.opacity = "100";
         document.getElementById(`client-emblem-${id}`)!.style.backgroundColor =
@@ -41,7 +41,7 @@ function ProjectCell(props: ProjectCellProps) {
         <div class="absolute flex h-full m-2 gap-2 max-h-[60px]">
           <div
             id={`client-emblem-${id}`}
-            class="backdrop-blur backdrop-brightness-90 rounded-lg max-w-[60px] ring ring-[rgb(0,0,0,0.1)] max-h-[60px] h-full w-full flex justify-center items-center transition-all duration-3000 ease-out"
+            class="backdrop-blur backdrop-brightness-90 rounded-xl max-w-[60px] ring ring-[rgb(0,0,0,0.1)] max-h-[60px] h-full w-full flex justify-center items-center transition-all duration-3000 ease-out"
           >
             <img
               class="brightness-500 saturate-0 contrast-500 p-4 max-h-[60px] max-w-[84px]"
@@ -50,7 +50,7 @@ function ProjectCell(props: ProjectCellProps) {
           </div>
           <div
             id={`client-tag-${id}`}
-            class="opacity-0 uppercase text-neutral-700 tracking-widest text-sm transition-all duration-3000 ease-out backdrop-blur-xl ring ring-[rgb(0,0,0,0.1)] backdrop-brightness-125 rounded-lg p-4 h-full flex items-center"
+            class="opacity-0 uppercase text-neutral-700 tracking-widest text-sm transition-all duration-3000 ease-out backdrop-blur-xl ring ring-[rgb(0,0,0,0.1)] backdrop-brightness-125 rounded-xl p-4 h-full flex items-center"
           >
             {title}
           </div>
