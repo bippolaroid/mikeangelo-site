@@ -26,10 +26,10 @@ export default function Dashboard() {
 
   createEffect(() => {
     if (refreshSignal()) {
-      loadCollections.refetch();
       setTimeout(() => {
+              loadCollections.refetch();
         setRefreshSignal(false);
-      }, 100);
+      }, 50);
     }
     if (collections() && remoteCollections()) {
       if (collections() === remoteCollections()) setSyncStatus(true);
