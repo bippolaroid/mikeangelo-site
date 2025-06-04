@@ -44,7 +44,6 @@ export default function Home() {
         </div>
         <div class="bg-black px-4 py-24 2xl:px-0">
                           <h1 class="text-center text-neutral-800 text-5xl mb-6 tracking-widest uppercase font-light">Portfolio</h1>
-
           <ProjectGrid data={projects()!} />
         </div>
       </main>
