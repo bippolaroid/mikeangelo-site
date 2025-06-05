@@ -9,6 +9,8 @@ let [localUrl, localPort, localEndpoint, remoteUrl, remoteEndpoint] = [
   settings.remoteEndpoint.value,
 ];
 
+let tunnelsUrl = settings.tunnels_url.value;
+
 /**
  * Fetches <Project> data from the local API.
  *
@@ -16,7 +18,7 @@ let [localUrl, localPort, localEndpoint, remoteUrl, remoteEndpoint] = [
  */
 export async function getLocalData(): Promise<Project[]> {
   try {
-    const res = await fetch(`http://${localUrl}:${localPort}/${localEndpoint}`);
+    const res = await fetch(`${tunnelsUrl}/projects`);
     return await res.json();
   } catch (error) {
     console.warn(error);
@@ -53,13 +55,14 @@ export async function getData(): Promise<Project[]> {
   }
 }
 
-export async function deleteCollection(collection: Project) {
+export async function deleteCollection(collection: Project, key: string) {
   try {
-    await fetch(`http://${localUrl}:${localPort}/${localEndpoint}`, {
+    await fetch(`${tunnelsUrl}/projects`, {
       method: "DELETE",
       body: JSON.stringify(collection),
       headers: {
         "Content-Type": "application/json; charset=UTF-8",
+        Authorization: `Bearer ${key}`,
       },
     }).then(async (response) => {
       if (!response.ok) {
@@ -71,13 +74,14 @@ export async function deleteCollection(collection: Project) {
   }
 }
 
-export async function createCollection(collection: Project) {
+export async function createCollection(collection: Project, key: string) {
   try {
-    await fetch(`http://${localUrl}:${localPort}/${localEndpoint}`, {
+    await fetch(`${tunnelsUrl}/projects`, {
       method: "POST",
       body: JSON.stringify(collection),
       headers: {
         "Content-Type": "application/json; charset=UTF-8",
+        Authorization: `Bearer ${key}`,
       },
     }).then(async (response) => {
       if (!response.ok) {
@@ -89,13 +93,14 @@ export async function createCollection(collection: Project) {
   }
 }
 
-export async function updateCollection(collection: Project) {
+export async function updateCollection(collection: Project, key: string) {
   try {
-    await fetch(`http://${localUrl}:${localPort}/${localEndpoint}`, {
+    await fetch(`${tunnelsUrl}/projects`, {
       method: "PUT",
       body: JSON.stringify(collection),
       headers: {
         "Content-Type": "application/json; charset=UTF-8",
+        Authorization: `Bearer ${key}`,
       },
     }).then(async (response) => {
       if (!response.ok) {
@@ -109,10 +114,12 @@ export async function updateCollection(collection: Project) {
 
 export async function serverCheck() {
   try {
-    const res = await fetch(
-      `http://${settings.localUrl.value}:${settings.localPort.value}/v1/folio`
-    );
-    return true;
+    const res = await fetch(`${tunnelsUrl}/folio`);
+    if (res.ok) {
+      return true;
+    } else {
+      return false;
+    }
   } catch (error) {
     console.warn(error);
     return false;

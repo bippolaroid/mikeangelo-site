@@ -1,3 +1,5 @@
+import { Setter } from "solid-js";
+
 export function renderMedia(media: string) {
   if (media.includes("vimeo.com")) {
     return (
@@ -32,3 +34,8 @@ export function renderMedia(media: string) {
 export function hit() {
   console.log("hit");
 }
+
+export function windowWidthHandler() {
+    let { innerWidth } = window;
+    return innerWidth <= 430
+  }

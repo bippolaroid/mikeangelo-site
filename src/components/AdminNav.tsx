@@ -1,5 +1,6 @@
 import { A, useLocation } from "@solidjs/router";
-import { createEffect, createSignal, onCleanup, onMount, Show } from "solid-js";
+import { createEffect, createSignal, onCleanup, onMount, Setter, Show } from "solid-js";
+import { windowWidthHandler } from "./utils";
 const [isMobile, setIsMobile] = createSignal<boolean>();
 
 export default function AdminNav() {
@@ -15,18 +16,17 @@ export default function AdminNav() {
     }
   }
 
-  function checkWindowWidth() {
-    let { innerWidth } = window;
-    return innerWidth > 430 ? false : true;
-  }
   onMount(() => {
-    setIsMobile(checkWindowWidth());
 
-    document.addEventListener("resize", checkWindowWidth);
+    document.addEventListener("resize", () => {
+      setIsMobile(windowWidthHandler);
+    });
     document.addEventListener("scroll", scrollHandler);
     onCleanup(() => {
-      document.removeEventListener("resize", scrollHandler);
-      document.removeEventListener("scroll", checkWindowWidth);
+      document.removeEventListener("resize", () => {
+      setIsMobile(windowWidthHandler);
+    });
+      document.removeEventListener("scroll", scrollHandler);
     });
   });
 

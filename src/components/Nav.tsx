@@ -1,7 +1,9 @@
 import { A, useLocation } from "@solidjs/router";
-import { createEffect, createSignal, onCleanup, onMount, Show } from "solid-js";
+import { createEffect, createSignal, onCleanup, onMount, Setter, Show } from "solid-js";
+import { windowWidthHandler } from "./utils";
+const [isMobile, setIsMobile] = createSignal<boolean>();
 
-export default function Nav() {
+export default function AdminNav() {
   const location = useLocation();
   const [prevScrollY, setPrevScrollY] = createSignal<number>(0);
 
@@ -14,17 +16,17 @@ export default function Nav() {
     }
   }
 
-  function checkWindowWidth() {
-    let { innerWidth } = window;
-    return innerWidth > 430 ? false : true;
-  }
   onMount(() => {
 
-    document.addEventListener("resize", checkWindowWidth);
+    document.addEventListener("resize", () => {
+      setIsMobile(windowWidthHandler);
+    });
     document.addEventListener("scroll", scrollHandler);
     onCleanup(() => {
-      document.removeEventListener("resize", scrollHandler);
-      document.removeEventListener("scroll", checkWindowWidth);
+      document.removeEventListener("resize", () => {
+      setIsMobile(windowWidthHandler);
+    });
+      document.removeEventListener("scroll", scrollHandler);
     });
   });
 
@@ -54,10 +56,10 @@ export default function Nav() {
           {/*<Show when={!isMobile()}>*/}
             <div class="w-full flex gap-4 justify-end items-center">
               <A href="./#footer">
-                <button class="bg-neutral-50 hover:bg-neutral-300 px-4 py-2 cursor-pointer rounded text-neutral-950">
-                  Contact
-                </button>
-              </A>
+              <button class="bg-neutral-50 hover:bg-neutral-300 px-4 py-2 cursor-pointer rounded text-neutral-950">
+                Contact
+              </button>
+            </A>
               <div class="flex gap-4">
                 
               </div>

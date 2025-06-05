@@ -1,32 +1,18 @@
-import { A } from "@solidjs/router";
-import {
-  Accessor,
-  createEffect,
-  createSignal,
-  For,
-  Show,
-  Setter,
-} from "solid-js";
+import { createSignal, For, Show, Setter } from "solid-js";
 import { Keypoint, Project } from "~/types/data";
-import { deleteCollection, updateCollection } from "~/utils/data_utils";
+import { Endpoint } from "./Auth";
 
 interface ProjectEditorProps {
   project: Project;
-  refreshSignal: {
-    accessor: Accessor<boolean>;
-    setter: Setter<boolean>;
-  };
+  authSignal: Setter<boolean>;
+  authEndpoint: Setter<Endpoint>;
+  updatedProject: Setter<Project>;
 }
 
 export default function ProjectEditor(props: ProjectEditorProps) {
   const [expanded, setExpanded] = createSignal<boolean>(true);
-  let { project, refreshSignal } = props;
-  function handleRefreshSignal() {
-    refreshSignal.setter(true);
-    setTimeout(() => {
-      refreshSignal.setter(false);
-    }, 10);
-  }
+  let { project, authEndpoint, authSignal, updatedProject } = props;
+
   let { id, title } = project;
 
   let project_original = project;
@@ -91,12 +77,13 @@ export default function ProjectEditor(props: ProjectEditorProps) {
         </div>
         <div class="w-fit flex justify-end items-start">
           <div
-            
             onclick={() => {
               setExpanded(!expanded());
             }}
           >
-            <label class="text-xs text-neutral-500 underline hover:text-neutral-300 cursor-pointer">{expanded() ? "Collapse" : "Expand"}</label>
+            <label class="text-xs text-neutral-500 underline hover:text-neutral-300 cursor-pointer">
+              {expanded() ? "Collapse" : "Expand"}
+            </label>
           </div>
         </div>
       </div>
@@ -169,8 +156,8 @@ export default function ProjectEditor(props: ProjectEditorProps) {
                         {(point) => {
                           return (
                             <div>
-                          <p class="text-neutral-500">{point.title}</p>
-                          </div>
+                              <p class="text-neutral-500">{point.title}</p>
+                            </div>
                           );
                         }}
                       </For>
@@ -226,10 +213,11 @@ export default function ProjectEditor(props: ProjectEditorProps) {
       </Show>
       <div class="w-full py-4">
         <button
-          class="w-fit cursor-pointer bg-neutral-50 hover:bg-neutral-300 rounded text-green-950 px-4 py-2"
+          class="w-fit cursor-pointer bg-neutral-50 hover:bg-neutral-300 rounded text-neutral-950 px-4 py-2"
           onClick={() => {
-            updateCollection(project);
-            handleRefreshSignal();
+            updatedProject(project);
+            authEndpoint(Endpoint.UPDATE_COLLECTION);
+            authSignal(true);
           }}
         >
           Save

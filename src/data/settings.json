@@ -1,7 +1,7 @@
 {
   "localUrl": {
     "name": "Local URL",
-    "value": "127.0.0.1"
+    "value": "http://localhost"
   },
   "localPort": {
     "name": "Local Port",
@@ -18,5 +18,9 @@
   "remoteEndpoint": {
     "name": "Remote Endpoint or Path",
     "value": "projects.json"
+  },
+  "tunnels_url": {
+    "name": "Tunnels URL",
+    "value": "https://folio.oeks.be/v1"
   }
 }

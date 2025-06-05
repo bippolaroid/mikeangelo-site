@@ -1,11 +1,18 @@
 import ProjectGrid from "~/components/ProjectGrid";
 import { Project } from "~/types/data";
 import { getRemoteData } from "~/utils/data_utils";
-import { createResource, Show } from "solid-js";
+import { createEffect, createResource, Show } from "solid-js";
 import Loading from "~/components/Loading";
 
 export default function Home() {
   const [projects] = createResource<Project[]>(getRemoteData);
+let y: Project;
+  createEffect(() => {
+    if(projects()) {
+      let z = (projects() as Project[])[0];
+      y = z;
+    }
+  })
 
   return (
     <Show when={projects()} fallback={<Loading />}>
