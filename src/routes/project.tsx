@@ -50,7 +50,7 @@ export default function ProjectPage(props: ProjectPageProps) {
       <main class={`w-full py-4 px-4 bg-neutral-900 mx-auto ${editing_param ? "rounded-xl" : "max-w-7xl 2xl:px-0"}`}>
         <div class="grid gap-4 pb-12">
           <div
-            class="flex gap-2 items-center justify-between rounded-lg px-6 py-4"
+            class="flex gap-2 items-center justify-between px-6 py-4"
             style={`background-color: ${project()!.accent_color};`}
           >
             <img
@@ -76,17 +76,17 @@ export default function ProjectPage(props: ProjectPageProps) {
             </For>
           </div>
         </div>
-        <div class="lg:flex">
+        <div class="lg:flex mb-12">
           <div class="w-full mb-4 lg:mb-0">
             {renderMedia(project()!.featured)}
           </div>
           <div class="w-full">
-            <div class="p-4 lg:ml-4 text-neutral-50 ring ring-neutral-500 rounded-lg">
+            <div class="p-4 lg:ml-4 text-neutral-400 ring ring-neutral-800 rounded-xl backdrop-brightness-125">
               <p>{project()!.summary}</p>
             </div>
           </div>
         </div>
-        <div class={`grid gap-12 mt-4 text-neutral-50 shadow-lg shadow-neutral-950 bg-gradient-to-tl from-neutral-950 to-neutral-800 border-t border-b border-neutral-500 py-12`}>
+        <div class={`rounded-xl grid gap-12 mt-4 text-neutral-50 shadow-lg shadow-neutral-950 bg-gradient-to-tl from-neutral-950 to-neutral-800 border-t border-b border-neutral-500 py-12`}>
           <For each={project()!.keypoints}>
             {(keypoint) => {
               return (
@@ -96,7 +96,7 @@ export default function ProjectPage(props: ProjectPageProps) {
                       <h2 class="text-3xl pb-4 text-neutral-50">
                         {keypoint.title}
                       </h2>
-                      <p class="lg:p-4 mx-auto lg:ring rounded-lg ring-neutral-700">
+                      <p class="lg:p-4 mx-auto text-neutral-400 lg:ring rounded-xl ring-neutral-800 backdrop-brightness-125 p-4">
                         {keypoint.summary}
                       </p>
                     </div>

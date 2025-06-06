@@ -23,7 +23,7 @@ export function renderMedia(media: string) {
   } else {
     return (
       <>
-        <div class="w-full mx-auto rounded overflow-hidden shadow">
+        <div class="w-full mx-auto overflow-hidden shadow">
           <img src={`${media}`} class="mx-auto w-full h-full" />
         </div>
       </>
