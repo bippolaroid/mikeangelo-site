@@ -18,7 +18,7 @@ export default function Layout(props: LayoutProps) {
   return (
     <div class="cursor-default">
       {isAdminRoute() ? <AdminNav /> : <Nav />}
-        <Suspense>{props.children}</Suspense>
+      <Suspense>{props.children}</Suspense>
       {!isAdminRoute() && <Footer />}
     </div>
   );

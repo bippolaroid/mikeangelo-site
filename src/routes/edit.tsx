@@ -2,7 +2,7 @@ import { A, useSearchParams } from "@solidjs/router";
 import ProjectPage from "./project";
 import { Project } from "~/types/data";
 import { createEffect, createResource, createSignal, Show } from "solid-js";
-import { getLocalData } from "~/utils/data_utils";
+import { getLocalData } from "~/utils/server_utils";
 import ProjectEditor from "~/components/ProjectEditor";
 import Auth, { Endpoint } from "~/components/Auth";
 

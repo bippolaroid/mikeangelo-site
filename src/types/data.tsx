@@ -11,7 +11,7 @@ export class Project {
   summary: string;
   keypoints: Keypoint[];
   last_modified: string;
-  text_fields: TextField[]
+  text_fields: TextField[];
   constructor(
     id: number,
     client: string,
@@ -34,7 +34,7 @@ export class Project {
     this.summary = summary;
     this.keypoints = keypoints;
     this.last_modified = last_modified;
-    this.text_fields = []
+    this.text_fields = [];
   }
 }
 
@@ -64,7 +64,7 @@ export class Keypoint {
 
 export class ProjectFactory {
   default(id: number): Project {
-      return new Project(
+    return new Project(
       id,
       `Client ${id}`,
       `https://`,

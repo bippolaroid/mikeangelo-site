@@ -1,6 +1,13 @@
 import { A, useLocation } from "@solidjs/router";
-import { createEffect, createSignal, onCleanup, onMount, Setter, Show } from "solid-js";
-import { windowWidthHandler } from "./utils";
+import {
+  createEffect,
+  createSignal,
+  onCleanup,
+  onMount,
+  Setter,
+  Show,
+} from "solid-js";
+import { windowWidthHandler } from "~/utils/nav_utils";
 const [isMobile, setIsMobile] = createSignal<boolean>();
 
 export default function AdminNav() {
@@ -17,15 +24,14 @@ export default function AdminNav() {
   }
 
   onMount(() => {
-
     document.addEventListener("resize", () => {
       setIsMobile(windowWidthHandler);
     });
     document.addEventListener("scroll", scrollHandler);
     onCleanup(() => {
       document.removeEventListener("resize", () => {
-      setIsMobile(windowWidthHandler);
-    });
+        setIsMobile(windowWidthHandler);
+      });
       document.removeEventListener("scroll", scrollHandler);
     });
   });
@@ -43,7 +49,10 @@ export default function AdminNav() {
 
   return (
     <>
-      <nav id="nav" class="backdrop-blur-lg backdrop-brightness-75 z-1000 fixed w-full flex 2xl:py-6 transition-all duration-500 border-b border-transparent">
+      <nav
+        id="nav"
+        class="backdrop-blur-lg backdrop-brightness-75 z-1000 fixed w-full flex 2xl:py-6 transition-all duration-500 border-b border-transparent"
+      >
         <div class="flex w-full max-w-7xl mx-auto p-4 2xl:p-0 justify-between items-center">
           <div class="w-full flex justify-start">
             <A
@@ -54,16 +63,14 @@ export default function AdminNav() {
             </A>
           </div>
           {/*<Show when={!isMobile()}>*/}
-            <div class="w-full flex gap-4 justify-end items-center">
-              <A href="./#footer">
-                <button class="bg-neutral-50 hover:bg-neutral-300 px-4 py-2 cursor-pointer rounded text-neutral-950">
-                  Settings
-                </button>
-              </A>
-              <div class="flex gap-4">
-                
-              </div>
-            </div>
+          <div class="w-full flex gap-4 justify-end items-center">
+            <A href="./#footer">
+              <button class="bg-neutral-50 hover:bg-neutral-300 px-4 py-2 cursor-pointer rounded text-neutral-950">
+                Settings
+              </button>
+            </A>
+            <div class="flex gap-4"></div>
+          </div>
           {/*</Show>*/}
         </div>
       </nav>

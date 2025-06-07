@@ -1,4 +1,4 @@
-import { hit, renderMedia } from "../components/utils";
+import { renderMedia } from "~/utils/data_utils";
 import { useSearchParams } from "@solidjs/router";
 import {
   createEffect,
@@ -9,7 +9,7 @@ import {
 } from "solid-js";
 import Loading from "~/components/Loading";
 import { Project } from "~/types/data";
-import { getData, getLocalData, getRemoteData } from "~/utils/data_utils";
+import { getRemoteData } from "~/utils/server_utils";
 
 interface ProjectPageProps {
   project?: Project;
@@ -29,7 +29,7 @@ export default function ProjectPage(props: ProjectPageProps) {
 
   createEffect(() => {
     if (collections()) {
-        let collections_array: Project[] = collections() as Project[];
+      let collections_array: Project[] = collections() as Project[];
 
       if (project_param && editing_param) {
         setProject(project_param);
@@ -47,46 +47,51 @@ export default function ProjectPage(props: ProjectPageProps) {
 
   return (
     <Show when={project()} fallback={<Loading />}>
-      <main class={`w-full py-4 px-4 bg-neutral-900 mx-auto ${editing_param ? "rounded-xl" : "max-w-7xl 2xl:px-0"}`}>
-        <div class="grid gap-4 pb-12">
-          <div
-            class="flex gap-2 items-center justify-between px-6 py-4"
-            style={`background-color: ${project()!.accent_color};`}
-          >
-            <img
-              class="max-h-[24px] md:max-h-[36px] max-w-[72px] md:max-w-[96px]"
-              src={project()!.client_logo}
-            />
-            <h3 class="text-sm md:text-xl uppercase tracking-widest text-neutral-50">
-              {project()!.client}
-            </h3>
-          </div>
-          <div class="mt-6">
-            <h2 class="text-3xl lg:text-5xl text-neutral-50 font-bold">{project()!.title}</h2>
-          </div>
-          <div class="flex gap-2">
+      <main
+        class={`w-full px-4 mt-1 border-t border-neutral-950 mx-auto ${
+          editing_param ? "rounded-xl" : "max-w-7xl"
+        }`}
+      >
+        <div class="grid gap-4 py-12">
+          <h2 class="text-5xl text-neutral-50 font-bold">{project()!.title}</h2>
+          <div class="flex gap-1">
             <For each={project()!.tags}>
               {(tag) => {
                 return (
-                  <div class="w-fit px-2 py-1 text-xs text-amber-500 bg-amber-950 rounded-lg">
+                  <div class="w-fit px-4 py-1 text-xs text-neutral-500 bg-neutral-900 rounded-xl">
                     {tag}
                   </div>
                 );
               }}
             </For>
           </div>
-        </div>
-        <div class="lg:flex mb-12">
-          <div class="w-full mb-4 lg:mb-0">
-            {renderMedia(project()!.featured)}
+          <div
+            class="flex gap-2 border-l-8 ring ring-neutral-950 items-center px-4 py-2"
+            style={`border-color: ${project()!.accent_color};`}
+          >
+            <img
+              class="max-h-[24px] md:max-h-[18px] max-w-[36px] md:max-w-[48px]"
+              src={project()!.client_logo}
+            />
+            <h3 class="text-sm md:text-sm uppercase tracking-widest text-neutral-50">
+              {project()!.client}
+            </h3>
           </div>
+        </div>
+        <div class="grid lg:flex gap-4 mb-12">
           <div class="w-full">
-            <div class="p-4 lg:ml-4 text-neutral-400 ring ring-neutral-800 rounded-xl backdrop-brightness-125">
+            <div class="p-4 text-neutral-300 border border-dashed border-neutral-900 rounded-xl backdrop-brightness-125">
               <p>{project()!.summary}</p>
             </div>
           </div>
+          <div class="w-full mb-4 lg:mb-0">
+            {renderMedia(project()!.featured)}
+          </div>
+          
         </div>
-        <div class={`rounded-xl grid gap-12 mt-4 text-neutral-50 shadow-lg shadow-neutral-950 bg-gradient-to-tl from-neutral-950 to-neutral-800 border-t border-b border-neutral-500 py-12`}>
+        <div
+          class={`rounded-xl grid gap-12 my-12 text-neutral-50 bg-gradient-to-tl to-black-950 from-neutral-900 ring ring-neutral-900 py-12`}
+        >
           <For each={project()!.keypoints}>
             {(keypoint) => {
               return (
@@ -96,7 +101,7 @@ export default function ProjectPage(props: ProjectPageProps) {
                       <h2 class="text-3xl pb-4 text-neutral-50">
                         {keypoint.title}
                       </h2>
-                      <p class="lg:p-4 mx-auto text-neutral-400 lg:ring rounded-xl ring-neutral-800 backdrop-brightness-125 p-4">
+                      <p class="lg:p-4 mx-auto text-neutral-300 lg:border border-dashed rounded-xl border-neutral-900 backdrop-brightness-125 p-4">
                         {keypoint.summary}
                       </p>
                     </div>

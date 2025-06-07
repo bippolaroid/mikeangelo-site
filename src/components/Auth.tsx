@@ -4,7 +4,7 @@ import {
   createCollection,
   deleteCollection,
   updateCollection,
-} from "~/utils/data_utils";
+} from "~/utils/server_utils";
 
 export enum Endpoint {
   CREATE_COLLECTION,

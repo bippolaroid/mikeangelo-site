@@ -1,70 +1,48 @@
-import { A, useLocation } from "@solidjs/router";
-import { createEffect, createSignal, onCleanup, onMount, Setter, Show } from "solid-js";
-import { windowWidthHandler } from "./utils";
-const [isMobile, setIsMobile] = createSignal<boolean>();
+import { A } from "@solidjs/router";
+import { createEffect } from "solid-js";
+import { useScrollDirection } from "~/hooks/useScrollDirection";
 
-export default function AdminNav() {
-  const location = useLocation();
-  const [prevScrollY, setPrevScrollY] = createSignal<number>(0);
-
-  function scrollHandler() {
-    let { scrollY } = window;
-    if (scrollY > prevScrollY()) {
-      setPrevScrollY(scrollY);
-    } else {
-      setPrevScrollY(scrollY);
-    }
-  }
-
-  onMount(() => {
-
-    document.addEventListener("resize", () => {
-      setIsMobile(windowWidthHandler);
-    });
-    document.addEventListener("scroll", scrollHandler);
-    onCleanup(() => {
-      document.removeEventListener("resize", () => {
-      setIsMobile(windowWidthHandler);
-    });
-      document.removeEventListener("scroll", scrollHandler);
-    });
-  });
+export default function Nav() {
+  const { scrollDirection, scrollPos } = useScrollDirection();
 
   createEffect(() => {
-    let navStyle = document.getElementById("nav");
-    if (prevScrollY() === 0) {
-      //navStyle!.style.borderColor = "#d4d4d4";
-      //navStyle!.style.backgroundColor = "#131313";
+    const navStyle = (document.getElementById("nav") as HTMLDivElement).style;
+    if (scrollDirection() === 1) {
+      if (scrollPos() > 0) {
+        navStyle.backdropFilter = "brightness(0.15) blur(16px)";
+        navStyle.boxShadow = "0px 6px 72px 0px";
+      }
     } else {
-      //navStyle!.style.borderColor = "transparent";
-      navStyle!.style.backgroundColor = "transparent";
+      if (scrollPos() < 72) {
+        navStyle.backdropFilter = "brightness(1)";
+        navStyle.boxShadow = "0px 0px 0px 0px";
+      }
     }
   });
 
   return (
     <>
-      <nav id="nav" class="backdrop-blur-lg backdrop-brightness-75 z-1000 fixed w-full flex 2xl:py-6 transition-all duration-500 border-b border-transparent">
+      <nav
+        id="nav"
+        class="z-1000 fixed w-full flex 2xl:py-6 transition-all duration-500 border-b border-neutral-950"
+      >
         <div class="flex w-full max-w-7xl mx-auto p-4 2xl:p-0 justify-between items-center">
           <div class="w-full flex justify-start">
             <A
               href="/"
-              class="text-neutral-50 hover:text-amber-500 cursor-pointer uppercase tracking-widest"
+              class="text-neutral-50 hover:text-neutral-700 duration-1000 transition-all ease-out cursor-pointer uppercase tracking-widest"
             >
               Mike Angelo
             </A>
           </div>
-          {/*<Show when={!isMobile()}>*/}
-            <div class="w-full flex gap-4 justify-end items-center">
-              <A href="./#footer">
+          <div class="w-full flex gap-4 justify-end items-center">
+            <A href="./#footer">
               <button class="bg-neutral-50 hover:bg-neutral-300 px-4 py-2 cursor-pointer rounded text-neutral-950">
                 Contact
               </button>
             </A>
-              <div class="flex gap-4">
-                
-              </div>
-            </div>
-          {/*</Show>*/}
+            <div class="flex gap-4"></div>
+          </div>
         </div>
       </nav>
       <div class="h-[4.5rem] 2xl:h-[5.5rem]"></div>

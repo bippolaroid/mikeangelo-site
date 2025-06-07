@@ -55,11 +55,11 @@ function ProjectCell(props: ProjectCellProps) {
             {title}
           </div>
         </div>
-        <div class="overflow-clip max-h-80">
-        <img
-          class="h-90 transition-all duration-3000 ease-out w-full object-cover"
-          src={featured}
-        />
+        <div class="overflow-clip">
+          <img
+            class="h-[20rem] 2xl:h-100 transition-all duration-3000 ease-out w-full object-cover"
+            src={featured}
+          />
         </div>
       </A>
     </div>
@@ -94,7 +94,7 @@ export default function ProjectGrid(props: ProjectGridProps) {
   });
 
   return (
-    <div class="border-t border-b border-neutral-800 backdrop-brightness-112 rounded-xl max-w-7xl lg:p-12 mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1 justify-center items-center w-full">
+    <div class="mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1 justify-center items-center w-full">
       <For each={computedData()}>
         {({ project, colspan }) => (
           <ProjectCell colspan={colspan} project={project} />

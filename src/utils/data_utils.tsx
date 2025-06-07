@@ -1,127 +1,30 @@
-import { Project, ProjectFactory } from "../types/data";
-import * as settings from "~/data/settings.json";
-
-let [localUrl, localPort, localEndpoint, remoteUrl, remoteEndpoint] = [
-  settings.localUrl.value,
-  settings.localPort.value,
-  settings.localEndpoint.value,
-  settings.remoteUrl.value,
-  settings.remoteEndpoint.value,
-];
-
-let tunnelsUrl = settings.tunnels_url.value;
-
-/**
- * Fetches <Project> data from the local API.
- *
- * @returns Promise that attempts to fetch <Project> data.
- */
-export async function getLocalData(): Promise<Project[]> {
-  try {
-    const res = await fetch(`${tunnelsUrl}/projects`);
-    return await res.json();
-  } catch (error) {
-    console.warn(error);
-    return [];
-  }
-}
-
-export async function getRemoteData(): Promise<Project[]> {
-  try {
-    const res = await fetch(`https://${remoteUrl}/${remoteEndpoint}`);
-    return await res.json();
-  } catch (error) {
-    console.warn(error);
-    return [];
-  }
-}
-
-export async function getData(): Promise<Project[]> {
-  try {
-    const data = await getLocalData();
-    console.log("Successfully fetched local data!");
-    return data;
-  } catch (error) {
-    console.error(`Failed to fetch local data: ${error}`);
-    console.log("Fetching remote data...");
-    try {
-      const data = await getRemoteData();
-      console.log("Successfully fetched remote data!");
-      return data;
-    } catch (error) {
-      console.error(`Failed to fetch remote data: ${error}`);
-      throw error;
-    }
-  }
-}
-
-export async function deleteCollection(collection: Project, key: string) {
-  try {
-    await fetch(`${tunnelsUrl}/projects`, {
-      method: "DELETE",
-      body: JSON.stringify(collection),
-      headers: {
-        "Content-Type": "application/json; charset=UTF-8",
-        Authorization: `Bearer ${key}`,
-      },
-    }).then(async (response) => {
-      if (!response.ok) {
-        console.error(`Failed to delete collection: ${response.statusText}`);
-      }
-    });
-  } catch (error) {
-    console.error(`Failed to connect to server: ${error}`);
-  }
-}
-
-export async function createCollection(collection: Project, key: string) {
-  try {
-    await fetch(`${tunnelsUrl}/projects`, {
-      method: "POST",
-      body: JSON.stringify(collection),
-      headers: {
-        "Content-Type": "application/json; charset=UTF-8",
-        Authorization: `Bearer ${key}`,
-      },
-    }).then(async (response) => {
-      if (!response.ok) {
-        console.error(`Failed to add collection: ${response.statusText}`);
-      }
-    });
-  } catch (error) {
-    console.error(`Failed to connect to server: ${error}`);
-  }
-}
-
-export async function updateCollection(collection: Project, key: string) {
-  try {
-    await fetch(`${tunnelsUrl}/projects`, {
-      method: "PUT",
-      body: JSON.stringify(collection),
-      headers: {
-        "Content-Type": "application/json; charset=UTF-8",
-        Authorization: `Bearer ${key}`,
-      },
-    }).then(async (response) => {
-      if (!response.ok) {
-        console.error(`Failed to update collection: ${response.statusText}`);
-      }
-    });
-  } catch (error) {
-    console.error(`Failed to connect to server: ${error}`);
-  }
-}
-
-export async function serverCheck() {
-  try {
-    const res = await fetch(`${tunnelsUrl}/folio`);
-    if (res.ok) {
-      return true;
-    } else {
-      return false;
-    }
-  } catch (error) {
-    console.warn(error);
-    return false;
+export function renderMedia(media: string) {
+  if (media.includes("vimeo.com")) {
+    return (
+      <div class="w-full relative pt-[56.25%] flex justify-center">
+        <iframe
+          class="absolute left-0 top-0 w-full h-full object-contain"
+          src={`${media}`}
+          allow="fullscreen"
+        ></iframe>
+        <script src="https://player.vimeo.com/api/player.js"></script>
+      </div>
+    );
+  } else if (media.includes("mp4")) {
+    return (
+      <video
+        controls
+        src={`${media}`}
+        class="mx-auto w-full object-cover h-full"
+      ></video>
+    );
+  } else {
+    return (
+      <>
+        <div class="w-full mx-auto overflow-hidden shadow">
+          <img src={`${media}`} class="mx-auto w-full h-full" />
+        </div>
+      </>
+    );
   }
 }

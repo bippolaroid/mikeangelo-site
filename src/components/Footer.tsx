@@ -10,11 +10,7 @@ export default function Footer() {
   });
 
   function copiedMessage() {
-    return (
-      <div class="w-full text-neutral-500">
-        Copied to clipboard!
-      </div>
-    );
+    return <div class="w-full text-neutral-500">Copied to clipboard!</div>;
   }
   async function copyToClipboard(content: string) {
     try {
@@ -27,7 +23,7 @@ export default function Footer() {
   }
 
   return (
-    <footer id="footer" class="w-full bg-neutral-900">
+    <footer id="footer" class="w-full bg-neutral-950">
       <div class="max-w-7xl mx-auto flex gap-2 items-start justify-between px-4 2xl:px-0 py-12">
         <div class="grid gap-2">
           <div class="text-neutral-100 text-xl font-bold">
@@ -42,7 +38,6 @@ export default function Footer() {
                 📧 <span class="underline">m.angelo@177edgar.com</span>
               </div>
             </Show>
-            
           </div>
         </div>
         <div class="grid text-right">

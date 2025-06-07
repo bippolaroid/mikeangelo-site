@@ -7,7 +7,7 @@ import {
   Show,
 } from "solid-js";
 import { Project, ProjectFactory } from "~/types/data";
-import { getLocalData, getRemoteData } from "~/utils/data_utils";
+import { getLocalData, getRemoteData } from "~/utils/server_utils";
 import ProjectGrid from "./ProjectGrid";
 import Loading from "./Loading";
 import Auth, { Endpoint } from "./Auth";
