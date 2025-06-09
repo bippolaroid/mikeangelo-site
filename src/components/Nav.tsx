@@ -27,15 +27,20 @@ export default function Nav() {
         class="z-1000 fixed w-full flex 2xl:py-6 transition-all duration-500 border-b border-neutral-950"
       >
         <div class="flex w-full max-w-7xl mx-auto p-4 2xl:p-0 justify-between items-center">
-          <div class="w-full flex justify-start">
+          <div class="w-full flex items-center justify-start">
             <A
               href="/"
-              class="text-neutral-50 hover:text-neutral-700 duration-1000 transition-all ease-out cursor-pointer uppercase tracking-widest"
+              class="text-neutral-50 uppercase tracking-widest"
             >
+            <div class="flex items-center hover:opacity-25 duration-1000 transition-all ease-out cursor-pointer">
+            <img class="h-8 pr-4" src="https://cdn.mikeangelo.art/MA-LOGO-2025.svg" />
+            
               Mike Angelo
+            
+            </div>
             </A>
           </div>
-          <div class="w-full flex gap-4 justify-end items-center">
+          <div class="w-full flex justify-end items-center">
             <A href="./#footer">
               <button class="bg-neutral-50 hover:bg-neutral-300 px-4 py-2 cursor-pointer rounded text-neutral-950">
                 Contact
